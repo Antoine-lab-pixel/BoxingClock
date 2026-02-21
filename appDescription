@@ -1,0 +1,74 @@
+Rôle : Tu es un développeur Android Senior expert en Kotlin et Jetpack Compose.
+
+Contexte : Je veux créer une application de "Timer d'intervalle" (type boxe). Utilise l'architecture MVVM.
+
+Entrée visuelle : CF IMAGES ATTACHEES
+
+Description de l'affichage principal l'application :
+-En haut une barre avec marque "ROUNDS" en haut a gauche, a droite un engrenage pour les reglages
+-Au centre le temps restant ecrit en tres gros, fond jaune pour le temps de preparation, fond vert pour le temps de travail et fond rouge pour le temps de repos
+-Avant de lancer les rounds un fleche verte en gros sur le centre de l'application avec le prochain temps ecrit en gros
+-En portrait, je veux que les minutes et secondes restantes apparaissent le plus gros possible, les minutes sur la partie haute et les secondes sur la partie basse. S'il n'y a que des secondes de parametres, afficher juste les secondes
+-Il n'y a qu'un seul temps de preparation et autant de temps de travail/repos que configure
+
+Pour le menu de reglages :
+- je veux des rouleaux avec juste minutes et secondes pour les rounds de preparation, de travail et de repos. 
+- je veux un rouleau pour les rounds qui sera gradue comme ceci : infini,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19, 20
+- je veux un toggle pour un "clapper" qui sonne 10s avant la fin du round de travail
+
+1. Spécifications de l'Écran Principal (Main Screen) :
+
+Top Bar :
+
+Gauche : Texte "ROUNDS".
+
+Droite : Icône d'engrenage (IconButton) naviguant vers l'écran de réglages.
+
+Zone Centrale (Timer) :
+
+Affichage : Le temps restant doit être énorme.
+
+Layout Portrait : Empilement vertical. Minutes en haut, Secondes en bas (taille maximisée).
+
+Logique d'affichage : Si le temps configuré ne contient que des secondes (ex: 30s), n'afficher que les secondes. Sinon, afficher Minutes et Secondes.
+
+Code Couleurs (Background) :
+
+Jaune : Préparation (Warm-up).
+
+Vert : Travail (Work).
+
+Rouge : Repos (Rest).
+
+État "Start" (Avant lancement) :
+
+Afficher une grosse flèche verte au centre (Bouton Play).
+
+Afficher le temps du premier round (Préparation) en gros.
+
+2. Spécifications de l'Écran de Réglages (Settings Screen) :
+
+Sélecteurs de temps (Rouleaux/Pickers) : Je veux des sélecteurs de style "Wheel Picker" (rouleaux) séparés pour Minutes et Secondes pour chaque phase :
+
+Temps de Préparation.
+
+Temps de Travail.
+
+Temps de Repos.
+
+Sélecteur de Rounds : Un rouleau unique avec les valeurs : Infini, 1, 2, ..., 20.
+
+Options Audio : Un Switch (Toggle) pour activer un son "Clapper" (bruit de clap).
+
+Logique Audio : Si activé, le son se déclenche exactement 10 secondes avant la fin du temps de "Travail" (fond vert).
+
+3. Logique du Timer (State Machine) :
+
+Cycle unique de Préparation au début.
+
+Ensuite, alternance : Travail -> Repos -> Travail -> Repos...
+
+Le cycle s'arrête une fois le nombre de rounds atteint (sauf si "Infini").
+
+Tâche : Génère le code nécessaire (Fichiers Kotlin, Composable functions, ViewModel, et définition du thème/couleurs). Gère les états pour que le timer fonctionne correctement même si on tourne l'écran.
+

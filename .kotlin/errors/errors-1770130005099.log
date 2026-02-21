@@ -1,0 +1,286 @@
+kotlin version: 2.2.10
+error message: java.lang.RuntimeException: Exception while generating code for:
+FUN name:TimePicker visibility:public modality:FINAL returnType:kotlin.Unit
+  VALUE_PARAMETER kind:Regular name:minutes index:0 type:kotlin.Int
+  VALUE_PARAMETER kind:Regular name:seconds index:1 type:kotlin.Int
+  VALUE_PARAMETER kind:Regular name:onMinutesChange index:2 type:kotlin.Function1<kotlin.Int, kotlin.Unit>
+  VALUE_PARAMETER kind:Regular name:onSecondsChange index:3 type:kotlin.Function1<kotlin.Int, kotlin.Unit>
+  annotations:
+    Composable
+  BLOCK_BODY
+    CALL 'public final fun Layout$default (content: @[Composable] @[UiComposable] kotlin.Function0<kotlin.Unit>, modifier: androidx.compose.ui.Modifier?, measurePolicy: androidx.compose.ui.layout.MeasurePolicy, $mask0: kotlin.Int, $handler: kotlin.Any?): kotlin.Unit [inline] declared in androidx.compose.ui.layout.LayoutKt' type=kotlin.Unit origin=DEFAULT_DISPATCH_CALL
+      ARG content: BLOCK type=kotlin.Function0<kotlin.Unit> origin=LAMBDA
+        COMPOSITE type=kotlin.Unit origin=null
+        FUNCTION_REFERENCE 'private final fun TimePicker$lambda$0 ($minutes: kotlin.Int, $onMinutesChange: kotlin.Function1<kotlin.Int, kotlin.Unit>, $seconds: kotlin.Int, $onSecondsChange: kotlin.Function1<kotlin.Int, kotlin.Unit>): kotlin.Unit declared in com.example.boxingclock.ui.components.PickersKt' type=kotlin.Function0<kotlin.Unit> origin=INLINE_LAMBDA reflectionTarget=null
+          ARG $minutes: GET_VAR 'minutes: kotlin.Int declared in com.example.boxingclock.ui.components.PickersKt.TimePicker' type=kotlin.Int origin=null
+          ARG $onMinutesChange: GET_VAR 'onMinutesChange: kotlin.Function1<kotlin.Int, kotlin.Unit> declared in com.example.boxingclock.ui.components.PickersKt.TimePicker' type=kotlin.Function1<kotlin.Int, kotlin.Unit> origin=null
+          ARG $seconds: GET_VAR 'seconds: kotlin.Int declared in com.example.boxingclock.ui.components.PickersKt.TimePicker' type=kotlin.Int origin=null
+          ARG $onSecondsChange: GET_VAR 'onSecondsChange: kotlin.Function1<kotlin.Int, kotlin.Unit> declared in com.example.boxingclock.ui.components.PickersKt.TimePicker' type=kotlin.Function1<kotlin.Int, kotlin.Unit> origin=null
+      ARG modifier: COMPOSITE type=androidx.compose.ui.Modifier? origin=DEFAULT_VALUE
+        CONST Null type=androidx.compose.ui.Modifier? value=null
+      ARG measurePolicy: BLOCK type=com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided> origin=null
+        CLASS LAMBDA_IMPL CLASS name:<no name provided> modality:FINAL visibility:public/*package*/ superTypes:[@[RawType] androidx.compose.ui.layout.MeasurePolicy]
+          thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>
+          CONSTRUCTOR GENERATED_MEMBER_IN_CALLABLE_REFERENCE visibility:public/*package*/ returnType:com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided> [primary]
+            BLOCK_BODY
+              DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () [primary] declared in kotlin.Any'
+              BLOCK type=kotlin.Unit origin=null
+          FUN name:measure-3p2s80s visibility:public modality:FINAL returnType:androidx.compose.ui.layout.MeasureResult
+            VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> index:0 type:com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>
+            VALUE_PARAMETER kind:Regular name:$this$Layout index:1 type:androidx.compose.ui.layout.MeasureScope
+            VALUE_PARAMETER kind:Regular name:measurables index:2 type:kotlin.collections.List<androidx.compose.ui.layout.Measurable>
+            VALUE_PARAMETER kind:Regular name:constraints index:3 type:androidx.compose.ui.unit.Constraints
+            overridden:
+              public abstract fun measure-3p2s80s ($this$measure: androidx.compose.ui.layout.MeasureScope, measurables: kotlin.collections.List<androidx.compose.ui.layout.Measurable>, constraints: androidx.compose.ui.unit.Constraints): androidx.compose.ui.layout.MeasureResult declared in androidx.compose.ui.layout.MeasurePolicy
+            BLOCK_BODY
+              VAR name:minutePickerPlaceable type:androidx.compose.ui.layout.Placeable [val]
+                CALL 'public abstract fun measure-BRTryo0 (constraints: androidx.compose.ui.unit.Constraints): androidx.compose.ui.layout.Placeable declared in androidx.compose.ui.layout.Measurable' type=androidx.compose.ui.layout.Placeable origin=null
+                  ARG <this>: CALL 'public abstract fun get (index: kotlin.Int): E of kotlin.collections.List [operator] declared in kotlin.collections.List' type=androidx.compose.ui.layout.Measurable origin=GET_ARRAY_ELEMENT
+                    ARG <this>: GET_VAR 'measurables: kotlin.collections.List<androidx.compose.ui.layout.Measurable> declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure-3p2s80s' type=kotlin.collections.List<androidx.compose.ui.layout.Measurable> origin=null
+                    ARG index: CONST Int type=kotlin.Int value=0
+                  ARG constraints: GET_VAR 'constraints: androidx.compose.ui.unit.Constraints declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure-3p2s80s' type=androidx.compose.ui.unit.Constraints origin=null
+              VAR name:spacerPlaceable type:androidx.compose.ui.layout.Placeable [val]
+                CALL 'public abstract fun measure-BRTryo0 (constraints: androidx.compose.ui.unit.Constraints): androidx.compose.ui.layout.Placeable declared in androidx.compose.ui.layout.Measurable' type=androidx.compose.ui.layout.Placeable origin=null
+                  ARG <this>: CALL 'public abstract fun get (index: kotlin.Int): E of kotlin.collections.List [operator] declared in kotlin.collections.List' type=androidx.compose.ui.layout.Measurable origin=GET_ARRAY_ELEMENT
+                    ARG <this>: GET_VAR 'measurables: kotlin.collections.List<androidx.compose.ui.layout.Measurable> declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure-3p2s80s' type=kotlin.collections.List<androidx.compose.ui.layout.Measurable> origin=null
+                    ARG index: CONST Int type=kotlin.Int value=1
+                  ARG constraints: GET_VAR 'constraints: androidx.compose.ui.unit.Constraints declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure-3p2s80s' type=androidx.compose.ui.unit.Constraints origin=null
+              VAR name:secondPickerPlaceable type:androidx.compose.ui.layout.Placeable [val]
+                CALL 'public abstract fun measure-BRTryo0 (constraints: androidx.compose.ui.unit.Constraints): androidx.compose.ui.layout.Placeable declared in androidx.compose.ui.layout.Measurable' type=androidx.compose.ui.layout.Placeable origin=null
+                  ARG <this>: CALL 'public abstract fun get (index: kotlin.Int): E of kotlin.collections.List [operator] declared in kotlin.collections.List' type=androidx.compose.ui.layout.Measurable origin=GET_ARRAY_ELEMENT
+                    ARG <this>: GET_VAR 'measurables: kotlin.collections.List<androidx.compose.ui.layout.Measurable> declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure-3p2s80s' type=kotlin.collections.List<androidx.compose.ui.layout.Measurable> origin=null
+                    ARG index: CONST Int type=kotlin.Int value=2
+                  ARG constraints: GET_VAR 'constraints: androidx.compose.ui.unit.Constraints declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure-3p2s80s' type=androidx.compose.ui.unit.Constraints origin=null
+              VAR name:totalWidth type:kotlin.Int [val]
+                CALL 'public final fun plus (other: kotlin.Int): kotlin.Int [operator] declared in kotlin.Int' type=kotlin.Int origin=PLUS
+                  ARG <this>: CALL 'public final fun plus (other: kotlin.Int): kotlin.Int [operator] declared in kotlin.Int' type=kotlin.Int origin=PLUS
+                    ARG <this>: CALL 'public final fun <get-width> (): kotlin.Int declared in androidx.compose.ui.layout.Placeable' type=kotlin.Int origin=GET_PROPERTY
+                      ARG <this>: GET_VAR 'val minutePickerPlaceable: androidx.compose.ui.layout.Placeable [val] declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure-3p2s80s' type=androidx.compose.ui.layout.Placeable origin=null
+                    ARG other: CALL 'public final fun <get-width> (): kotlin.Int declared in androidx.compose.ui.layout.Placeable' type=kotlin.Int origin=GET_PROPERTY
+                      ARG <this>: GET_VAR 'val spacerPlaceable: androidx.compose.ui.layout.Placeable [val] declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure-3p2s80s' type=androidx.compose.ui.layout.Placeable origin=null
+                  ARG other: CALL 'public final fun <get-width> (): kotlin.Int declared in androidx.compose.ui.layout.Placeable' type=kotlin.Int origin=GET_PROPERTY
+                    ARG <this>: GET_VAR 'val secondPickerPlaceable: androidx.compose.ui.layout.Placeable [val] declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure-3p2s80s' type=androidx.compose.ui.layout.Placeable origin=null
+              VAR name:totalHeight type:kotlin.Int [val]
+                CALL 'public final fun maxOf (a: kotlin.Int, b: kotlin.Int): kotlin.Int [inline] declared in kotlin.comparisons.ComparisonsKt' type=kotlin.Int origin=null
+                  ARG a: CALL 'public final fun <get-height> (): kotlin.Int declared in androidx.compose.ui.layout.Placeable' type=kotlin.Int origin=GET_PROPERTY
+                    ARG <this>: GET_VAR 'val minutePickerPlaceable: androidx.compose.ui.layout.Placeable [val] declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure-3p2s80s' type=androidx.compose.ui.layout.Placeable origin=null
+                  ARG b: CALL 'public final fun <get-height> (): kotlin.Int declared in androidx.compose.ui.layout.Placeable' type=kotlin.Int origin=GET_PROPERTY
+                    ARG <this>: GET_VAR 'val secondPickerPlaceable: androidx.compose.ui.layout.Placeable [val] declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure-3p2s80s' type=androidx.compose.ui.layout.Placeable origin=null
+              RETURN type=kotlin.Nothing from='public final fun measure-3p2s80s ($this$Layout: androidx.compose.ui.layout.MeasureScope, measurables: kotlin.collections.List<androidx.compose.ui.layout.Measurable>, constraints: androidx.compose.ui.unit.Constraints): androidx.compose.ui.layout.MeasureResult declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>'
+                CALL 'public final fun layout$default ($this: androidx.compose.ui.layout.MeasureScope, width: kotlin.Int, height: kotlin.Int, alignmentLines: kotlin.collections.Map<androidx.compose.ui.layout.AlignmentLine, kotlin.Int>?, placementBlock: @[ExtensionFunctionType] kotlin.Function1<androidx.compose.ui.layout.Placeable.PlacementScope, kotlin.Unit>, $mask0: kotlin.Int, $handler: kotlin.Any?): androidx.compose.ui.layout.MeasureResult declared in androidx.compose.ui.layout.MeasureScope' type=androidx.compose.ui.layout.MeasureResult origin=DEFAULT_DISPATCH_CALL
+                  ARG $this: GET_VAR '$this$Layout: androidx.compose.ui.layout.MeasureScope declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure-3p2s80s' type=androidx.compose.ui.layout.MeasureScope origin=IMPLICIT_ARGUMENT
+                  ARG width: GET_VAR 'val totalWidth: kotlin.Int [val] declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure-3p2s80s' type=kotlin.Int origin=null
+                  ARG height: GET_VAR 'val totalHeight: kotlin.Int [val] declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure-3p2s80s' type=kotlin.Int origin=null
+                  ARG alignmentLines: COMPOSITE type=kotlin.collections.Map<androidx.compose.ui.layout.AlignmentLine, kotlin.Int>? origin=DEFAULT_VALUE
+                    CONST Null type=kotlin.collections.Map<androidx.compose.ui.layout.AlignmentLine, kotlin.Int>? value=null
+                  ARG placementBlock: BLOCK type=@[ExtensionFunctionType] kotlin.Function1<androidx.compose.ui.layout.Placeable.PlacementScope, kotlin.Unit> origin=LAMBDA
+                    COMPOSITE type=kotlin.Unit origin=null
+                    CALL 'public final fun <jvm-indy> <T> (dynamicCall: T of kotlin.jvm.internal.<jvm-indy>, bootstrapMethodHandle: kotlin.Any, vararg bootstrapMethodArguments: kotlin.Any): T of kotlin.jvm.internal.<jvm-indy> declared in kotlin.jvm.internal' type=@[ExtensionFunctionType] kotlin.Function1<androidx.compose.ui.layout.Placeable.PlacementScope, kotlin.Unit> origin=null
+                      TYPE_ARG T: @[ExtensionFunctionType] kotlin.Function1<androidx.compose.ui.layout.Placeable.PlacementScope, kotlin.Unit>
+                      ARG dynamicCall: CALL 'public final fun invoke (p0: androidx.compose.ui.layout.Placeable, p1: androidx.compose.ui.layout.Placeable, p2: androidx.compose.ui.layout.Placeable): @[ExtensionFunctionType] kotlin.Function1<androidx.compose.ui.layout.Placeable.PlacementScope, kotlin.Unit> declared in kotlin.jvm.internal.invokeDynamic' type=@[ExtensionFunctionType] kotlin.Function1<androidx.compose.ui.layout.Placeable.PlacementScope, kotlin.Unit> origin=null
+                        ARG p0: GET_VAR 'val minutePickerPlaceable: androidx.compose.ui.layout.Placeable [val] declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure-3p2s80s' type=androidx.compose.ui.layout.Placeable origin=null
+                        ARG p1: GET_VAR 'val spacerPlaceable: androidx.compose.ui.layout.Placeable [val] declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure-3p2s80s' type=androidx.compose.ui.layout.Placeable origin=null
+                        ARG p2: GET_VAR 'val secondPickerPlaceable: androidx.compose.ui.layout.Placeable [val] declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure-3p2s80s' type=androidx.compose.ui.layout.Placeable origin=null
+                      ARG bootstrapMethodHandle: CALL 'public final fun <jvm-method-handle> (tag: kotlin.Int, owner: kotlin.String, name: kotlin.String, descriptor: kotlin.String, isInterface: kotlin.Boolean): kotlin.Any declared in kotlin.jvm.internal' type=kotlin.Any origin=null
+                        ARG tag: CONST Int type=kotlin.Int value=6
+                        ARG owner: CONST String type=kotlin.String value="java/lang/invoke/LambdaMetafactory"
+                        ARG name: CONST String type=kotlin.String value="metafactory"
+                        ARG descriptor: CONST String type=kotlin.String value="(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;"
+                        ARG isInterface: CONST Boolean type=kotlin.Boolean value=false
+                      ARG bootstrapMethodArguments: VARARG type=kotlin.Array<kotlin.Any> varargElementType=kotlin.Any
+                        CALL 'public final fun <jvm-original-method-type> (method: kotlin.Any): kotlin.Any declared in kotlin.jvm.internal' type=kotlin.Any origin=null
+                          ARG method: RAW_FUNCTION_REFERENCE 'public abstract fun invoke (p1: P1 of kotlin.Function1): R of kotlin.Function1 [operator] declared in kotlin.Function1' type=kotlin.Any
+                        RAW_FUNCTION_REFERENCE 'private final fun measure_3p2s80s$lambda$0 ($minutePickerPlaceable: androidx.compose.ui.layout.Placeable, $spacerPlaceable: androidx.compose.ui.layout.Placeable, $secondPickerPlaceable: androidx.compose.ui.layout.Placeable, $this$layout: androidx.compose.ui.layout.Placeable.PlacementScope): kotlin.Unit? declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>' type=kotlin.Any
+                        CALL 'public final fun <jvm-original-method-type> (method: kotlin.Any): kotlin.Any declared in kotlin.jvm.internal' type=kotlin.Any origin=null
+                          ARG method: RAW_FUNCTION_REFERENCE 'public abstract fun invoke (p1: androidx.compose.ui.layout.Placeable.PlacementScope): kotlin.Unit? [fake_override,operator] declared in kotlin.jvm.internal.invokeDynamic.<fake>' type=kotlin.Any
+                  ARG $mask0: CONST Int type=kotlin.Int value=4
+                  ARG $handler: CONST Null type=kotlin.Any? value=null
+          FUN SUPER_INTERFACE_METHOD_BRIDGE name:maxIntrinsicHeight visibility:public modality:OPEN returnType:kotlin.Int
+            VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>
+            VALUE_PARAMETER kind:ExtensionReceiver name:<this> index:1 type:androidx.compose.ui.layout.IntrinsicMeasureScope
+            VALUE_PARAMETER kind:Regular name:measurables index:2 type:kotlin.collections.List<androidx.compose.ui.layout.IntrinsicMeasurable>
+            VALUE_PARAMETER kind:Regular name:width index:3 type:kotlin.Int
+            overridden:
+              public open fun maxIntrinsicHeight (<this>: androidx.compose.ui.layout.IntrinsicMeasureScope, measurables: kotlin.collections.List<androidx.compose.ui.layout.IntrinsicMeasurable>, width: kotlin.Int): kotlin.Int declared in androidx.compose.ui.layout.MeasurePolicy
+            EXPRESSION_BODY
+              BLOCK type=kotlin.Int origin=null
+                CALL 'public open fun maxIntrinsicHeight (<this>: androidx.compose.ui.layout.IntrinsicMeasureScope, measurables: kotlin.collections.List<androidx.compose.ui.layout.IntrinsicMeasurable>, width: kotlin.Int): kotlin.Int declared in androidx.compose.ui.layout.MeasurePolicy' superQualifier='CLASS IR_EXTERNAL_DECLARATION_STUB INTERFACE name:MeasurePolicy modality:ABSTRACT visibility:public [fun] superTypes:[kotlin.Any]' type=kotlin.Int origin=null
+                  ARG <this>(index:0): GET_VAR '<this>(index:0): com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided> declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.maxIntrinsicHeight' type=com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided> origin=null
+                  ARG <this>(index:1): GET_VAR '<this>(index:1): androidx.compose.ui.layout.IntrinsicMeasureScope declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.maxIntrinsicHeight' type=androidx.compose.ui.layout.IntrinsicMeasureScope origin=null
+                  ARG measurables: GET_VAR 'measurables: kotlin.collections.List<androidx.compose.ui.layout.IntrinsicMeasurable> declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.maxIntrinsicHeight' type=kotlin.collections.List<androidx.compose.ui.layout.IntrinsicMeasurable> origin=null
+                  ARG width: GET_VAR 'width: kotlin.Int declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.maxIntrinsicHeight' type=kotlin.Int origin=null
+          FUN SUPER_INTERFACE_METHOD_BRIDGE name:maxIntrinsicWidth visibility:public modality:OPEN returnType:kotlin.Int
+            VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>
+            VALUE_PARAMETER kind:ExtensionReceiver name:<this> index:1 type:androidx.compose.ui.layout.IntrinsicMeasureScope
+            VALUE_PARAMETER kind:Regular name:measurables index:2 type:kotlin.collections.List<androidx.compose.ui.layout.IntrinsicMeasurable>
+            VALUE_PARAMETER kind:Regular name:height index:3 type:kotlin.Int
+            overridden:
+              public open fun maxIntrinsicWidth (<this>: androidx.compose.ui.layout.IntrinsicMeasureScope, measurables: kotlin.collections.List<androidx.compose.ui.layout.IntrinsicMeasurable>, height: kotlin.Int): kotlin.Int declared in androidx.compose.ui.layout.MeasurePolicy
+            EXPRESSION_BODY
+              BLOCK type=kotlin.Int origin=null
+                CALL 'public open fun maxIntrinsicWidth (<this>: androidx.compose.ui.layout.IntrinsicMeasureScope, measurables: kotlin.collections.List<androidx.compose.ui.layout.IntrinsicMeasurable>, height: kotlin.Int): kotlin.Int declared in androidx.compose.ui.layout.MeasurePolicy' superQualifier='CLASS IR_EXTERNAL_DECLARATION_STUB INTERFACE name:MeasurePolicy modality:ABSTRACT visibility:public [fun] superTypes:[kotlin.Any]' type=kotlin.Int origin=null
+                  ARG <this>(index:0): GET_VAR '<this>(index:0): com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided> declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.maxIntrinsicWidth' type=com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided> origin=null
+                  ARG <this>(index:1): GET_VAR '<this>(index:1): androidx.compose.ui.layout.IntrinsicMeasureScope declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.maxIntrinsicWidth' type=androidx.compose.ui.layout.IntrinsicMeasureScope origin=null
+                  ARG measurables: GET_VAR 'measurables: kotlin.collections.List<androidx.compose.ui.layout.IntrinsicMeasurable> declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.maxIntrinsicWidth' type=kotlin.collections.List<androidx.compose.ui.layout.IntrinsicMeasurable> origin=null
+                  ARG height: GET_VAR 'height: kotlin.Int declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.maxIntrinsicWidth' type=kotlin.Int origin=null
+          FUN SUPER_INTERFACE_METHOD_BRIDGE name:minIntrinsicHeight visibility:public modality:OPEN returnType:kotlin.Int
+            VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>
+            VALUE_PARAMETER kind:ExtensionReceiver name:<this> index:1 type:androidx.compose.ui.layout.IntrinsicMeasureScope
+            VALUE_PARAMETER kind:Regular name:measurables index:2 type:kotlin.collections.List<androidx.compose.ui.layout.IntrinsicMeasurable>
+            VALUE_PARAMETER kind:Regular name:width index:3 type:kotlin.Int
+            overridden:
+              public open fun minIntrinsicHeight (<this>: androidx.compose.ui.layout.IntrinsicMeasureScope, measurables: kotlin.collections.List<androidx.compose.ui.layout.IntrinsicMeasurable>, width: kotlin.Int): kotlin.Int declared in androidx.compose.ui.layout.MeasurePolicy
+            EXPRESSION_BODY
+              BLOCK type=kotlin.Int origin=null
+                CALL 'public open fun minIntrinsicHeight (<this>: androidx.compose.ui.layout.IntrinsicMeasureScope, measurables: kotlin.collections.List<androidx.compose.ui.layout.IntrinsicMeasurable>, width: kotlin.Int): kotlin.Int declared in androidx.compose.ui.layout.MeasurePolicy' superQualifier='CLASS IR_EXTERNAL_DECLARATION_STUB INTERFACE name:MeasurePolicy modality:ABSTRACT visibility:public [fun] superTypes:[kotlin.Any]' type=kotlin.Int origin=null
+                  ARG <this>(index:0): GET_VAR '<this>(index:0): com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided> declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.minIntrinsicHeight' type=com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided> origin=null
+                  ARG <this>(index:1): GET_VAR '<this>(index:1): androidx.compose.ui.layout.IntrinsicMeasureScope declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.minIntrinsicHeight' type=androidx.compose.ui.layout.IntrinsicMeasureScope origin=null
+                  ARG measurables: GET_VAR 'measurables: kotlin.collections.List<androidx.compose.ui.layout.IntrinsicMeasurable> declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.minIntrinsicHeight' type=kotlin.collections.List<androidx.compose.ui.layout.IntrinsicMeasurable> origin=null
+                  ARG width: GET_VAR 'width: kotlin.Int declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.minIntrinsicHeight' type=kotlin.Int origin=null
+          FUN SUPER_INTERFACE_METHOD_BRIDGE name:minIntrinsicWidth visibility:public modality:OPEN returnType:kotlin.Int
+            VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>
+            VALUE_PARAMETER kind:ExtensionReceiver name:<this> index:1 type:androidx.compose.ui.layout.IntrinsicMeasureScope
+            VALUE_PARAMETER kind:Regular name:measurables index:2 type:kotlin.collections.List<androidx.compose.ui.layout.IntrinsicMeasurable>
+            VALUE_PARAMETER kind:Regular name:height index:3 type:kotlin.Int
+            overridden:
+              public open fun minIntrinsicWidth (<this>: androidx.compose.ui.layout.IntrinsicMeasureScope, measurables: kotlin.collections.List<androidx.compose.ui.layout.IntrinsicMeasurable>, height: kotlin.Int): kotlin.Int declared in androidx.compose.ui.layout.MeasurePolicy
+            EXPRESSION_BODY
+              BLOCK type=kotlin.Int origin=null
+                CALL 'public open fun minIntrinsicWidth (<this>: androidx.compose.ui.layout.IntrinsicMeasureScope, measurables: kotlin.collections.List<androidx.compose.ui.layout.IntrinsicMeasurable>, height: kotlin.Int): kotlin.Int declared in androidx.compose.ui.layout.MeasurePolicy' superQualifier='CLASS IR_EXTERNAL_DECLARATION_STUB INTERFACE name:MeasurePolicy modality:ABSTRACT visibility:public [fun] superTypes:[kotlin.Any]' type=kotlin.Int origin=null
+                  ARG <this>(index:0): GET_VAR '<this>(index:0): com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided> declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.minIntrinsicWidth' type=com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided> origin=null
+                  ARG <this>(index:1): GET_VAR '<this>(index:1): androidx.compose.ui.layout.IntrinsicMeasureScope declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.minIntrinsicWidth' type=androidx.compose.ui.layout.IntrinsicMeasureScope origin=null
+                  ARG measurables: GET_VAR 'measurables: kotlin.collections.List<androidx.compose.ui.layout.IntrinsicMeasurable> declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.minIntrinsicWidth' type=kotlin.collections.List<androidx.compose.ui.layout.IntrinsicMeasurable> origin=null
+                  ARG height: GET_VAR 'height: kotlin.Int declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.minIntrinsicWidth' type=kotlin.Int origin=null
+          FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+            VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+            VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+            overridden:
+              public open fun equals (other: kotlin.Any?): kotlin.Boolean [fake_override,operator] declared in androidx.compose.ui.layout.MeasurePolicy
+          FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+            VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+            overridden:
+              public open fun hashCode (): kotlin.Int [fake_override] declared in androidx.compose.ui.layout.MeasurePolicy
+          FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+            VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+            overridden:
+              public open fun toString (): kotlin.String [fake_override] declared in androidx.compose.ui.layout.MeasurePolicy
+          FUN LOCAL_FUNCTION_FOR_LAMBDA name:measure_3p2s80s$lambda$0 visibility:private modality:FINAL returnType:kotlin.Unit?
+            VALUE_PARAMETER BOUND_VALUE_PARAMETER kind:Regular name:$minutePickerPlaceable index:0 type:androidx.compose.ui.layout.Placeable
+            VALUE_PARAMETER BOUND_VALUE_PARAMETER kind:Regular name:$spacerPlaceable index:1 type:androidx.compose.ui.layout.Placeable
+            VALUE_PARAMETER BOUND_VALUE_PARAMETER kind:Regular name:$secondPickerPlaceable index:2 type:androidx.compose.ui.layout.Placeable
+            VALUE_PARAMETER kind:Regular name:$this$layout index:3 type:androidx.compose.ui.layout.Placeable.PlacementScope
+            BLOCK_BODY
+              CALL 'public final fun place$default ($this: androidx.compose.ui.layout.Placeable.PlacementScope, $receiver: androidx.compose.ui.layout.Placeable, x: kotlin.Int, y: kotlin.Int, zIndex: kotlin.Float, $mask0: kotlin.Int, $handler: kotlin.Any?): kotlin.Unit declared in androidx.compose.ui.layout.Placeable.PlacementScope' type=kotlin.Unit origin=DEFAULT_DISPATCH_CALL
+                ARG $this: GET_VAR '$this$layout: androidx.compose.ui.layout.Placeable.PlacementScope declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure_3p2s80s$lambda$0' type=androidx.compose.ui.layout.Placeable.PlacementScope origin=null
+                ARG $receiver: GET_VAR '$minutePickerPlaceable: androidx.compose.ui.layout.Placeable declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure_3p2s80s$lambda$0' type=androidx.compose.ui.layout.Placeable origin=null
+                ARG x: CONST Int type=kotlin.Int value=0
+                ARG y: CONST Int type=kotlin.Int value=0
+                ARG zIndex: COMPOSITE type=kotlin.Float origin=DEFAULT_VALUE
+                  CONST Float type=kotlin.Float value=0.0
+                ARG $mask0: CONST Int type=kotlin.Int value=4
+                ARG $handler: CONST Null type=kotlin.Any? value=null
+              CALL 'public final fun place$default ($this: androidx.compose.ui.layout.Placeable.PlacementScope, $receiver: androidx.compose.ui.layout.Placeable, x: kotlin.Int, y: kotlin.Int, zIndex: kotlin.Float, $mask0: kotlin.Int, $handler: kotlin.Any?): kotlin.Unit declared in androidx.compose.ui.layout.Placeable.PlacementScope' type=kotlin.Unit origin=DEFAULT_DISPATCH_CALL
+                ARG $this: GET_VAR '$this$layout: androidx.compose.ui.layout.Placeable.PlacementScope declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure_3p2s80s$lambda$0' type=androidx.compose.ui.layout.Placeable.PlacementScope origin=null
+                ARG $receiver: GET_VAR '$spacerPlaceable: androidx.compose.ui.layout.Placeable declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure_3p2s80s$lambda$0' type=androidx.compose.ui.layout.Placeable origin=null
+                ARG x: CALL 'public final fun <get-width> (): kotlin.Int declared in androidx.compose.ui.layout.Placeable' type=kotlin.Int origin=GET_PROPERTY
+                  ARG <this>: GET_VAR '$minutePickerPlaceable: androidx.compose.ui.layout.Placeable declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure_3p2s80s$lambda$0' type=androidx.compose.ui.layout.Placeable origin=null
+                ARG y: CONST Int type=kotlin.Int value=0
+                ARG zIndex: COMPOSITE type=kotlin.Float origin=DEFAULT_VALUE
+                  CONST Float type=kotlin.Float value=0.0
+                ARG $mask0: CONST Int type=kotlin.Int value=4
+                ARG $handler: CONST Null type=kotlin.Any? value=null
+              CALL 'public final fun place$default ($this: androidx.compose.ui.layout.Placeable.PlacementScope, $receiver: androidx.compose.ui.layout.Placeable, x: kotlin.Int, y: kotlin.Int, zIndex: kotlin.Float, $mask0: kotlin.Int, $handler: kotlin.Any?): kotlin.Unit declared in androidx.compose.ui.layout.Placeable.PlacementScope' type=kotlin.Unit origin=DEFAULT_DISPATCH_CALL
+                ARG $this: GET_VAR '$this$layout: androidx.compose.ui.layout.Placeable.PlacementScope declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure_3p2s80s$lambda$0' type=androidx.compose.ui.layout.Placeable.PlacementScope origin=null
+                ARG $receiver: GET_VAR '$secondPickerPlaceable: androidx.compose.ui.layout.Placeable declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure_3p2s80s$lambda$0' type=androidx.compose.ui.layout.Placeable origin=null
+                ARG x: CALL 'public final fun plus (other: kotlin.Int): kotlin.Int [operator] declared in kotlin.Int' type=kotlin.Int origin=PLUS
+                  ARG <this>: CALL 'public final fun <get-width> (): kotlin.Int declared in androidx.compose.ui.layout.Placeable' type=kotlin.Int origin=GET_PROPERTY
+                    ARG <this>: GET_VAR '$minutePickerPlaceable: androidx.compose.ui.layout.Placeable declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure_3p2s80s$lambda$0' type=androidx.compose.ui.layout.Placeable origin=null
+                  ARG other: CALL 'public final fun <get-width> (): kotlin.Int declared in androidx.compose.ui.layout.Placeable' type=kotlin.Int origin=GET_PROPERTY
+                    ARG <this>: GET_VAR '$spacerPlaceable: androidx.compose.ui.layout.Placeable declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>.measure_3p2s80s$lambda$0' type=androidx.compose.ui.layout.Placeable origin=null
+                ARG y: CONST Int type=kotlin.Int value=0
+                ARG zIndex: COMPOSITE type=kotlin.Float origin=DEFAULT_VALUE
+                  CONST Float type=kotlin.Float value=0.0
+                ARG $mask0: CONST Int type=kotlin.Int value=4
+                ARG $handler: CONST Null type=kotlin.Any? value=null
+          FIELD FIELD_FOR_OBJECT_INSTANCE name:INSTANCE type:com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided> visibility:public [final,static]
+          FUN CLASS_STATIC_INITIALIZER name:<clinit> visibility:public/*package*/ modality:FINAL returnType:kotlin.Unit
+            BLOCK_BODY
+              SET_FIELD 'FIELD FIELD_FOR_OBJECT_INSTANCE name:INSTANCE type:com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided> visibility:public [final,static] declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>' type=kotlin.Unit origin=INITIALIZE_FIELD
+                value: CONSTRUCTOR_CALL 'public/*package*/ constructor <init> () [primary] declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>' type=com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided> origin=null
+        GET_FIELD 'FIELD FIELD_FOR_OBJECT_INSTANCE name:INSTANCE type:com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided> visibility:public [final,static] declared in com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided>' type=com.example.boxingclock.ui.components.PickersKt.TimePicker.<no name provided> origin=null
+      ARG $mask0: CONST Int type=kotlin.Int value=2
+      ARG $handler: CONST Null type=kotlin.Any? value=null
+
+	at org.jetbrains.kotlin.backend.jvm.codegen.FunctionCodegen.generate(FunctionCodegen.kt:50)
+	at org.jetbrains.kotlin.backend.jvm.codegen.FunctionCodegen.generate$default(FunctionCodegen.kt:43)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ClassCodegen.generateMethodNode(ClassCodegen.kt:422)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ClassCodegen.generateMethod(ClassCodegen.kt:439)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ClassCodegen.generate(ClassCodegen.kt:164)
+	at org.jetbrains.kotlin.backend.jvm.JvmIrCodegenFactory.generateFile(JvmIrCodegenFactory.kt:419)
+	at org.jetbrains.kotlin.backend.jvm.JvmIrCodegenFactory.invokeCodegen(JvmIrCodegenFactory.kt:388)
+	at org.jetbrains.kotlin.cli.jvm.compiler.KotlinToJVMBytecodeCompiler.runCodegen$cli(KotlinToJVMBytecodeCompiler.kt:431)
+	at org.jetbrains.kotlin.cli.pipeline.jvm.JvmBackendPipelinePhase.executePhase(JvmBackendPipelinePhase.kt:95)
+	at org.jetbrains.kotlin.cli.pipeline.jvm.JvmBackendPipelinePhase.executePhase(JvmBackendPipelinePhase.kt:36)
+	at org.jetbrains.kotlin.cli.pipeline.jvm.JvmBackendPipelinePhase.executePhase(JvmBackendPipelinePhase.kt:29)
+	at org.jetbrains.kotlin.cli.pipeline.PipelinePhase.phaseBody(PipelinePhase.kt:68)
+	at org.jetbrains.kotlin.cli.pipeline.PipelinePhase.phaseBody(PipelinePhase.kt:58)
+	at org.jetbrains.kotlin.config.phaser.NamedCompilerPhase.invoke(CompilerPhase.kt:102)
+	at org.jetbrains.kotlin.backend.common.phaser.CompositePhase.invoke(PhaseBuilders.kt:22)
+	at org.jetbrains.kotlin.config.phaser.CompilerPhaseKt.invokeToplevel(CompilerPhase.kt:53)
+	at org.jetbrains.kotlin.cli.pipeline.AbstractCliPipeline.runPhasedPipeline(AbstractCliPipeline.kt:109)
+	at org.jetbrains.kotlin.cli.pipeline.AbstractCliPipeline.execute(AbstractCliPipeline.kt:68)
+	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecutePhased(K2JVMCompiler.kt:78)
+	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecutePhased(K2JVMCompiler.kt:44)
+	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:90)
+	at org.jetbrains.kotlin.cli.common.CLICompiler.exec(CLICompiler.kt:352)
+	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunnerBase.runCompiler(IncrementalJvmCompilerRunnerBase.kt:175)
+	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunnerBase.runCompiler(IncrementalJvmCompilerRunnerBase.kt:38)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.doCompile(IncrementalCompilerRunner.kt:504)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileImpl(IncrementalCompilerRunner.kt:421)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileNonIncrementally(IncrementalCompilerRunner.kt:306)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(IncrementalCompilerRunner.kt:133)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.execIncrementalCompiler(CompileServiceImpl.kt:679)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.access$execIncrementalCompiler(CompileServiceImpl.kt:93)
+	at org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(CompileServiceImpl.kt:1806)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
+	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: org.jetbrains.kotlin.codegen.CompilationException: Back-end (JVM) Internal error: Couldn't inline method call: CALL 'public final fun Layout$default (content: @[Composable] @[UiComposable] kotlin.Function0<kotlin.Unit>, modifier: androidx.compose.ui.Modifier?, measurePolicy: androidx.compose.ui.layout.MeasurePolicy, $mask0: kotlin.Int, $handler: kotlin.Any?): kotlin.Unit [inline] declared in androidx.compose.ui.layout.LayoutKt' type=kotlin.Unit origin=DEFAULT_DISPATCH_CALL
+Method: null
+File is unknown
+The root cause java.lang.IllegalStateException was thrown at: org.jetbrains.kotlin.codegen.inline.SourceCompilerForInlineKt.getMethodNode(SourceCompilerForInline.kt:129)
+	at org.jetbrains.kotlin.backend.jvm.codegen.IrInlineCodegen.genInlineCall(IrInlineCodegen.kt:82)
+	at org.jetbrains.kotlin.backend.jvm.codegen.IrInlineCallGenerator.genCall(IrInlineCallGenerator.kt:36)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitCall(ExpressionCodegen.kt:586)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitCall(ExpressionCodegen.kt:135)
+	at org.jetbrains.kotlin.ir.expressions.IrCall.accept(IrCall.kt:24)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitStatementContainer(ExpressionCodegen.kt:527)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitBlockBody(ExpressionCodegen.kt:532)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitBlockBody(ExpressionCodegen.kt:135)
+	at org.jetbrains.kotlin.ir.expressions.IrBlockBody.accept(IrBlockBody.kt:20)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.generate(ExpressionCodegen.kt:233)
+	at org.jetbrains.kotlin.backend.jvm.codegen.FunctionCodegen.doGenerate(FunctionCodegen.kt:126)
+	at org.jetbrains.kotlin.backend.jvm.codegen.FunctionCodegen.generate(FunctionCodegen.kt:47)
+	... 45 more
+Caused by: java.lang.IllegalStateException: couldn't find inline method Landroidx/compose/ui/layout/LayoutKt;.Layout$default(Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Landroidx/compose/ui/layout/MeasurePolicy;ILjava/lang/Object;)V
+	at org.jetbrains.kotlin.codegen.inline.SourceCompilerForInlineKt.getMethodNode(SourceCompilerForInline.kt:129)
+	at org.jetbrains.kotlin.codegen.inline.SourceCompilerForInlineKt.loadCompiledInlineFunction$lambda$2(SourceCompilerForInline.kt:98)
+	at org.jetbrains.kotlin.codegen.inline.InlineCache.computeMethodBytes(InlineCache.kt:90)
+	at org.jetbrains.kotlin.codegen.inline.SourceCompilerForInlineKt.loadCompiledInlineFunction(SourceCompilerForInline.kt:93)
+	at org.jetbrains.kotlin.backend.jvm.codegen.IrSourceCompilerForInline.compileInlineFunction(IrSourceCompilerForInline.kt:96)
+	at org.jetbrains.kotlin.backend.jvm.codegen.IrInlineCodegen.genInlineCall(IrInlineCodegen.kt:65)
+	... 56 more
+
+
