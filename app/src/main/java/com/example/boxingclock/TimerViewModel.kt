@@ -12,9 +12,19 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class TimerViewModel(application: Application) : AndroidViewModel(application) {
+
+    private val repository = SettingsRepository(application)
+
+    private val _selectedPreset = MutableStateFlow(0)
+    val selectedPreset: StateFlow<Int> = _selectedPreset.asStateFlow()
+
+    private val _allPresets = MutableStateFlow(List(3) { TimerSettings() })
+    val allPresets: StateFlow<List<TimerSettings>> = _allPresets.asStateFlow()
+
     private val _settings = MutableStateFlow(TimerSettings())
     val settings: StateFlow<TimerSettings> = _settings.asStateFlow()
 
@@ -25,8 +35,33 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
     private var mediaPlayer: MediaPlayer? = null
     private var clapperPlayed = false
 
+    init {
+        viewModelScope.launch {
+            val presets = repository.allPresets.first()
+            val selected = repository.selectedPreset.first()
+            _allPresets.value = presets
+            _selectedPreset.value = selected
+            _settings.value = presets[selected]
+            resetTimer()
+        }
+    }
+
+    fun selectPreset(index: Int) {
+        _selectedPreset.value = index
+        _settings.value = _allPresets.value[index]
+        viewModelScope.launch {
+            repository.saveSelectedPreset(index)
+        }
+        resetTimer()
+    }
+
     fun updateSettings(newSettings: TimerSettings) {
+        val index = _selectedPreset.value
         _settings.value = newSettings
+        _allPresets.value = _allPresets.value.toMutableList().also { it[index] = newSettings }
+        viewModelScope.launch {
+            repository.savePreset(index, newSettings)
+        }
         resetTimer()
     }
 
@@ -64,10 +99,9 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
         val state = _timerState.value
         val newTimeRemaining = state.timeRemaining - 1
 
-        // Check for clapper (12s before end of work phase)
-        if (state.currentPhase == Phase.WORK && 
+        if (state.currentPhase == Phase.WORK &&
             newTimeRemaining == 11 &&
-            _settings.value.clapperEnabled && 
+            _settings.value.clapperEnabled &&
             !clapperPlayed) {
             playClapper()
             clapperPlayed = true
@@ -87,7 +121,6 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
         when (state.currentPhase) {
             Phase.PREPARATION -> {
                 playBell()
-                // Move to first work round
                 _timerState.value = state.copy(
                     currentPhase = Phase.WORK,
                     currentRound = 1,
@@ -98,24 +131,21 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
             }
             Phase.WORK -> {
                 val totalRounds = if (sets.rounds == 0) Int.MAX_VALUE else sets.rounds
-                
+
                 if (state.currentRound < totalRounds) {
                     playBell()
-                     // Move to rest
                     _timerState.value = state.copy(
                         currentPhase = Phase.REST,
                         timeRemaining = sets.restTime,
                         totalPhaseTime = sets.restTime
                     )
                 } else {
-                    // Finished all rounds
                     playEndRounds()
                     resetTimer()
                 }
             }
             Phase.REST -> {
                 playBell()
-                // Next work round
                 _timerState.value = state.copy(
                     currentPhase = Phase.WORK,
                     currentRound = state.currentRound + 1,

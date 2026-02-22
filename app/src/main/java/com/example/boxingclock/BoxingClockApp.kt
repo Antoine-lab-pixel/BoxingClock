@@ -15,6 +15,7 @@ fun BoxingClockApp(viewModel: TimerViewModel) {
     val navController = rememberNavController()
     val timerState by viewModel.timerState.collectAsState()
     val settings by viewModel.settings.collectAsState()
+    val selectedPreset by viewModel.selectedPreset.collectAsState()
 
     NavHost(navController = navController, startDestination = "main") {
         composable("main") {
@@ -32,6 +33,8 @@ fun BoxingClockApp(viewModel: TimerViewModel) {
         composable("settings") {
             SettingsScreen(
                 settings = settings,
+                selectedPreset = selectedPreset,
+                onPresetSelect = { viewModel.selectPreset(it) },
                 onSettingClick = { key -> navController.navigate("settings/edit/$key") },
                 onSettingsChange = { newSettings -> viewModel.updateSettings(newSettings) },
                 onBackClick = { navController.popBackStack() }

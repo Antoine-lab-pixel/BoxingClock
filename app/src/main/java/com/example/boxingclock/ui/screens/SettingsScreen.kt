@@ -17,6 +17,8 @@ import com.example.boxingclock.model.TimerSettings
 @Composable
 fun SettingsScreen(
     settings: TimerSettings,
+    selectedPreset: Int,
+    onPresetSelect: (Int) -> Unit,
     onSettingClick: (String) -> Unit,
     onSettingsChange: (TimerSettings) -> Unit,
     onBackClick: () -> Unit
@@ -24,10 +26,10 @@ fun SettingsScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Réglages", fontWeight = FontWeight.Bold) },
+                title = { Text("Settings", fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
-                        Icon(Icons.Filled.ArrowBack, contentDescription = "Retour")
+                        Icon(Icons.Filled.ArrowBack, contentDescription = "Return")
                     }
                 }
             )
@@ -38,20 +40,31 @@ fun SettingsScreen(
                 .fillMaxSize()
                 .padding(padding)
         ) {
+            // Preset tabs
+            TabRow(selectedTabIndex = selectedPreset) {
+                listOf("1", "2", "3").forEachIndexed { index, label ->
+                    Tab(
+                        selected = selectedPreset == index,
+                        onClick = { onPresetSelect(index) },
+                        text = { Text(label, fontWeight = FontWeight.Bold, fontSize = 18.sp) }
+                    )
+                }
+            }
+
             SettingRow(
-                label = "Préparation",
+                label = "Prep",
                 value = formatDuration(settings.preparationTime),
                 onClick = { onSettingClick("preparation") }
             )
             Divider()
             SettingRow(
-                label = "Travail",
+                label = "Work",
                 value = formatDuration(settings.workTime),
                 onClick = { onSettingClick("work") }
             )
             Divider()
             SettingRow(
-                label = "Repos",
+                label = "Rest",
                 value = formatDuration(settings.restTime),
                 onClick = { onSettingClick("rest") }
             )
@@ -74,7 +87,7 @@ fun SettingsScreen(
                 Column {
                     Text("Clapper", fontSize = 20.sp, fontWeight = FontWeight.Bold)
                     Text(
-                        text = "Son 10s avant la fin du travail",
+                        text = "10s left in round at the end of the sound",
                         fontSize = 14.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )

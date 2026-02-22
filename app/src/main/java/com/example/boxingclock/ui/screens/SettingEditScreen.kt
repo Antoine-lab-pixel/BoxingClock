@@ -23,9 +23,9 @@ fun SettingEditScreen(
     onBackClick: () -> Unit
 ) {
     val title = when (settingKey) {
-        "preparation" -> "Préparation"
-        "work" -> "Travail"
-        "rest" -> "Repos"
+        "preparation" -> "Prep"
+        "work" -> "Work"
+        "rest" -> "Rest"
         "rounds" -> "Rounds"
         else -> ""
     }
