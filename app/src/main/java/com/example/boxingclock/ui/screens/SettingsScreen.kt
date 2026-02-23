@@ -2,6 +2,8 @@ package com.example.boxingclock.ui.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
@@ -40,7 +42,7 @@ fun SettingsScreen(
                 .fillMaxSize()
                 .padding(padding)
         ) {
-            // Preset tabs
+            // Preset tabs — fixed, outside the scroll area
             TabRow(selectedTabIndex = selectedPreset) {
                 listOf("1", "2", "3").forEachIndexed { index, label ->
                     Tab(
@@ -51,6 +53,11 @@ fun SettingsScreen(
                 }
             }
 
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+            ) {
             SettingRow(
                 label = "Prep",
                 value = formatDuration(settings.preparationTime),
@@ -97,6 +104,29 @@ fun SettingsScreen(
                     onCheckedChange = { onSettingsChange(settings.copy(clapperEnabled = it)) }
                 )
             }
+            Divider()
+            // 30s reminder toggle
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 20.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column {
+                    Text("30s reminder", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                    Text(
+                        text = "Sound when 30s of work time remain",
+                        fontSize = 14.sp,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                Switch(
+                    checked = settings.thirtySecondsEnabled,
+                    onCheckedChange = { onSettingsChange(settings.copy(thirtySecondsEnabled = it)) }
+                )
+            }
+            } // end scrollable Column
         }
     }
 }

@@ -11,7 +11,8 @@ data class TimerSettings(
     val workTime: Int = 180, // 3 minutes
     val restTime: Int = 60, // 1 minute
     val rounds: Int = 3, // 0 means infinite
-    val clapperEnabled: Boolean = true
+    val clapperEnabled: Boolean = true,
+    val thirtySecondsEnabled: Boolean = true
 )
 
 data class TimerState(
@@ -19,5 +20,6 @@ data class TimerState(
     val timeRemaining: Int = 10,
     val totalPhaseTime: Int = 10, // Total duration of the current phase
     val currentRound: Int = 0,
-    val isRunning: Boolean = false
+    val isRunning: Boolean = false,
+    val hasStarted: Boolean = false
 )

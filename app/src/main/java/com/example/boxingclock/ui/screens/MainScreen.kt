@@ -1,6 +1,8 @@
 package com.example.boxingclock.ui.screens
 
+import android.app.Activity
 import android.content.res.Configuration
+import android.view.WindowManager
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -9,10 +11,12 @@ import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -42,71 +46,31 @@ fun MainScreen(
         Phase.REST -> PhaseRestColor
     }
 
-    val isInitialState = !timerState.isRunning &&
-            timerState.currentRound == 0 &&
-            timerState.currentPhase == Phase.PREPARATION
+    val isInitialState = !timerState.hasStarted
+
+    // Keep screen on while the timer is running
+    val window = (LocalContext.current as Activity).window
+    DisposableEffect(timerState.isRunning) {
+        if (timerState.isRunning) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        }
+        onDispose {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        }
+    }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(backgroundColor)
     ) {
-        // Top bar
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 30.dp)
-                .align(Alignment.TopCenter),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.Top
-        ) {
-            if (isInitialState) {
-                Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                    val roundsDisplay = if (totalRounds == 0) "∞" else "$totalRounds"
-                    SessionInfoRow(label = "ROUNDS", value = roundsDisplay)
-                    SessionInfoRow(label = "WORK", value = formatDuration(workTime))
-                    SessionInfoRow(label = "REST", value = formatDuration(restTime))
-                }
-            } else {
-                Column {
-                    Text(
-                        text = "ROUND",
-                        fontSize = 32.sp,
-                        fontWeight = FontWeight.Bold,
-                        letterSpacing = 3.sp,
-                        color = Color.Black.copy(alpha = 0.55f)
-                    )
-                    val roundText = if (totalRounds > 0)
-                        "${timerState.currentRound} / $totalRounds"
-                    else
-                        "${timerState.currentRound}"
-                    Text(
-                        text = roundText,
-                        fontSize = 64.sp,
-                        fontWeight = FontWeight.Black,
-                        letterSpacing = (-1).sp,
-                        color = Color.Black,
-                        lineHeight = 58.sp
-                    )
-                }
-            }
-
-            IconButton(onClick = onSettingsClick) {
-                Icon(
-                    Icons.Default.Settings,
-                    contentDescription = "Settings",
-                    tint = Color.Black.copy(alpha = 0.7f),
-                    modifier = Modifier.size(28.dp)
-                )
-            }
-        }
-
         // Main content
         if (isInitialState) {
             StartOverlay(
                 timeRemaining = timerState.timeRemaining,
                 onStartClick = onStartClick,
-                modifier = Modifier.align(Alignment.Center)
+                isLandscape = isLandscape,
+                modifier = if (isLandscape) Modifier.fillMaxSize() else Modifier.align(Alignment.Center)
             )
         } else {
             // Phase label + timer
@@ -154,13 +118,14 @@ fun MainScreen(
                 )
 
                 if (isLandscape) {
-                    // Landscape: PAUSED left | timer stays centered | RESET right
+                    // Landscape: PAUSED + RESET grouped centrally
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
                             .align(Alignment.Center)
+                            .displayCutoutPadding()
                             .padding(horizontal = 32.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween,
+                        horizontalArrangement = Arrangement.spacedBy(48.dp, Alignment.CenterHorizontally),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
@@ -255,6 +220,79 @@ fun MainScreen(
                 }
             }
         }
+
+        // Top bar — drawn last so it stays above all overlays and remains clickable
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .statusBarsPadding()
+                .displayCutoutPadding()
+                .padding(horizontal = 16.dp, vertical = 12.dp)
+                .align(Alignment.TopCenter)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.Top
+            ) {
+                if (isInitialState) {
+                    Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                        val roundsDisplay = if (totalRounds == 0) "∞" else "$totalRounds"
+                        SessionInfoRow(label = "ROUNDS", value = roundsDisplay)
+                        SessionInfoRow(label = "WORK", value = formatDuration(workTime))
+                        SessionInfoRow(label = "REST", value = formatDuration(restTime))
+                    }
+                } else {
+                    Column {
+                        Text(
+                            text = "ROUND",
+                            fontSize = 32.sp,
+                            fontWeight = FontWeight.Bold,
+                            letterSpacing = 3.sp,
+                            color = Color.Black.copy(alpha = 0.55f)
+                        )
+                        val roundText = if (totalRounds > 0)
+                            "${timerState.currentRound} / $totalRounds"
+                        else
+                            "${timerState.currentRound}"
+                        Text(
+                            text = roundText,
+                            fontSize = 64.sp,
+                            fontWeight = FontWeight.Black,
+                            letterSpacing = (-1).sp,
+                            color = Color.Black,
+                            lineHeight = 58.sp
+                        )
+                    }
+                }
+
+                IconButton(onClick = onSettingsClick) {
+                    Icon(
+                        Icons.Default.Settings,
+                        contentDescription = "Settings",
+                        tint = Color.Black.copy(alpha = 0.7f),
+                        modifier = Modifier.size(28.dp)
+                    )
+                }
+            }
+
+            // Phase label centered in the top bar (landscape only)
+            if (isLandscape && !isInitialState) {
+                val phaseLabel = when (timerState.currentPhase) {
+                    Phase.PREPARATION -> "PREP"
+                    Phase.WORK -> "WORK"
+                    Phase.REST -> "REST"
+                }
+                Text(
+                    text = phaseLabel,
+                    fontSize = 26.sp,
+                    fontWeight = FontWeight.Bold,
+                    letterSpacing = 10.sp,
+                    color = Color.Black.copy(alpha = 0.45f),
+                    modifier = Modifier.align(Alignment.Center)
+                )
+            }
+        }
     }
 }
 
@@ -289,34 +327,69 @@ private fun formatDuration(seconds: Int): String =
 fun StartOverlay(
     timeRemaining: Int,
     onStartClick: () -> Unit,
+    isLandscape: Boolean = false,
     modifier: Modifier = Modifier
 ) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-        modifier = modifier.clickable { onStartClick() }
-    ) {
-        Icon(
-            imageVector = Icons.Default.PlayArrow,
-            contentDescription = "Start",
-            tint = Color(0xFF2E7D32),
-            modifier = Modifier.size(360.dp)
-        )
-        Text(
-            text = "Prep ${timeRemaining}s",
-            fontSize = 64.sp,
-            fontWeight = FontWeight.Black,
-            letterSpacing = (-1).sp,
-            color = Color.Black
-        )
-        Text(
-            text = "TAP TO START",
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold,
-            letterSpacing = 4.sp,
-            color = Color.Black.copy(alpha = 0.5f),
-            modifier = Modifier.padding(top = 12.dp)
-        )
+    if (isLandscape) {
+        Box(modifier = modifier.clickable { onStartClick() }) {
+            Icon(
+                imageVector = Icons.Default.PlayArrow,
+                contentDescription = "Start",
+                tint = Color(0xFF2E7D32),
+                modifier = Modifier
+                    .size(360.dp)
+                    .align(Alignment.Center)
+            )
+            Text(
+                text = "Prep ${timeRemaining}s",
+                fontSize = 64.sp,
+                fontWeight = FontWeight.Black,
+                letterSpacing = (-1).sp,
+                color = Color.Black,
+                modifier = Modifier
+                    .align(Alignment.CenterStart)
+                    .displayCutoutPadding()
+                    .padding(start = 48.dp)
+            )
+            Text(
+                text = "TAP TO START",
+                fontSize = 32.sp,
+                fontWeight = FontWeight.Bold,
+                letterSpacing = 4.sp,
+                color = Color.Black.copy(alpha = 0.5f),
+                modifier = Modifier
+                    .align(Alignment.CenterEnd)
+                    .padding(end = 48.dp)
+            )
+        }
+    } else {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = modifier.clickable { onStartClick() }
+        ) {
+            Icon(
+                imageVector = Icons.Default.PlayArrow,
+                contentDescription = "Start",
+                tint = Color(0xFF2E7D32),
+                modifier = Modifier.size(360.dp)
+            )
+            Text(
+                text = "Prep ${timeRemaining}s",
+                fontSize = 64.sp,
+                fontWeight = FontWeight.Black,
+                letterSpacing = (-1).sp,
+                color = Color.Black
+            )
+            Text(
+                text = "TAP TO START",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                letterSpacing = 4.sp,
+                color = Color.Black.copy(alpha = 0.5f),
+                modifier = Modifier.padding(top = 12.dp)
+            )
+        }
     }
 }
 

@@ -23,6 +23,7 @@ class SettingsRepository(private val context: Context) {
         fun restKey(i: Int) = intPreferencesKey("preset_${i}_rest")
         fun roundsKey(i: Int) = intPreferencesKey("preset_${i}_rounds")
         fun clapperKey(i: Int) = booleanPreferencesKey("preset_${i}_clapper")
+        fun thirtySecondsKey(i: Int) = booleanPreferencesKey("preset_${i}_thirty_seconds")
     }
 
     val selectedPreset: Flow<Int> = context.dataStore.data.map { prefs ->
@@ -37,7 +38,8 @@ class SettingsRepository(private val context: Context) {
                 workTime = prefs[workKey(i)] ?: defaults.workTime,
                 restTime = prefs[restKey(i)] ?: defaults.restTime,
                 rounds = prefs[roundsKey(i)] ?: defaults.rounds,
-                clapperEnabled = prefs[clapperKey(i)] ?: defaults.clapperEnabled
+                clapperEnabled = prefs[clapperKey(i)] ?: defaults.clapperEnabled,
+                thirtySecondsEnabled = prefs[thirtySecondsKey(i)] ?: defaults.thirtySecondsEnabled
             )
         }
     }
@@ -49,6 +51,7 @@ class SettingsRepository(private val context: Context) {
             prefs[restKey(index)] = settings.restTime
             prefs[roundsKey(index)] = settings.rounds
             prefs[clapperKey(index)] = settings.clapperEnabled
+            prefs[thirtySecondsKey(index)] = settings.thirtySecondsEnabled
         }
     }
 

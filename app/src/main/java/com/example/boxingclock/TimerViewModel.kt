@@ -34,6 +34,7 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
     private var timerJob: Job? = null
     private var mediaPlayer: MediaPlayer? = null
     private var clapperPlayed = false
+    private var thirtySecondsPlayed = false
 
     init {
         viewModelScope.launch {
@@ -68,7 +69,7 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
     fun startTimer() {
         if (_timerState.value.isRunning) return
 
-        _timerState.value = _timerState.value.copy(isRunning = true)
+        _timerState.value = _timerState.value.copy(isRunning = true, hasStarted = true)
 
         timerJob = viewModelScope.launch {
             while (_timerState.value.isRunning) {
@@ -93,6 +94,7 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
             currentRound = 0
         )
         clapperPlayed = false
+        thirtySecondsPlayed = false
     }
 
     private fun tick() {
@@ -105,6 +107,15 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
             !clapperPlayed) {
             playClapper()
             clapperPlayed = true
+        }
+
+        if (state.currentPhase == Phase.WORK &&
+            newTimeRemaining == 30 &&
+            state.totalPhaseTime > 30 &&
+            _settings.value.thirtySecondsEnabled &&
+            !thirtySecondsPlayed) {
+            playThirtySeconds()
+            thirtySecondsPlayed = true
         }
 
         if (newTimeRemaining < 1) {
@@ -128,6 +139,7 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
                     totalPhaseTime = sets.workTime
                 )
                 clapperPlayed = false
+                thirtySecondsPlayed = false
             }
             Phase.WORK -> {
                 val totalRounds = if (sets.rounds == 0) Int.MAX_VALUE else sets.rounds
@@ -153,7 +165,18 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
                     totalPhaseTime = sets.workTime
                 )
                 clapperPlayed = false
+                thirtySecondsPlayed = false
             }
+        }
+    }
+
+    private fun playThirtySeconds() {
+        try {
+            mediaPlayer?.release()
+            mediaPlayer = MediaPlayer.create(getApplication(), R.raw.thirty_seconds)
+            mediaPlayer?.start()
+        } catch (e: Exception) {
+            // Handle error silently
         }
     }
 
