@@ -47,6 +47,7 @@ fun SettingsScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
+                .displayCutoutPadding()
         ) {
             // Preset selector — fixed, outside the scroll area
             Row(
