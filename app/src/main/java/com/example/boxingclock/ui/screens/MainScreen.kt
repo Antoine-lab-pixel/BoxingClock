@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.VolumeOff
+import androidx.compose.material.icons.filled.VolumeUp
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -32,9 +34,11 @@ fun MainScreen(
     totalRounds: Int,
     workTime: Int,
     restTime: Int,
+    isMuted: Boolean,
     onStartClick: () -> Unit,
     onPauseClick: () -> Unit,
     onResetClick: () -> Unit,
+    onMuteToggle: () -> Unit,
     onSettingsClick: () -> Unit
 ) {
     val configuration = LocalConfiguration.current
@@ -266,13 +270,23 @@ fun MainScreen(
                     }
                 }
 
-                IconButton(onClick = onSettingsClick) {
-                    Icon(
-                        Icons.Default.Settings,
-                        contentDescription = "Settings",
-                        tint = Color.Black.copy(alpha = 0.7f),
-                        modifier = Modifier.size(28.dp)
-                    )
+                Row {
+                    IconButton(onClick = onMuteToggle) {
+                        Icon(
+                            if (isMuted) Icons.Default.VolumeOff else Icons.Default.VolumeUp,
+                            contentDescription = if (isMuted) "Unmute" else "Mute",
+                            tint = Color.Black.copy(alpha = 0.7f),
+                            modifier = Modifier.size(28.dp)
+                        )
+                    }
+                    IconButton(onClick = onSettingsClick) {
+                        Icon(
+                            Icons.Default.Settings,
+                            contentDescription = "Settings",
+                            tint = Color.Black.copy(alpha = 0.7f),
+                            modifier = Modifier.size(28.dp)
+                        )
+                    }
                 }
             }
 

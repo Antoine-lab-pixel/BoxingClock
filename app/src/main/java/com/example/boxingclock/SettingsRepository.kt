@@ -22,6 +22,8 @@ class SettingsRepository(private val context: Context) {
         fun workKey(i: Int) = intPreferencesKey("preset_${i}_work")
         fun restKey(i: Int) = intPreferencesKey("preset_${i}_rest")
         fun roundsKey(i: Int) = intPreferencesKey("preset_${i}_rounds")
+        fun bellKey(i: Int) = booleanPreferencesKey("preset_${i}_bell")
+        fun endBellKey(i: Int) = booleanPreferencesKey("preset_${i}_end_bell")
         fun clapperKey(i: Int) = booleanPreferencesKey("preset_${i}_clapper")
         fun thirtySecondsKey(i: Int) = booleanPreferencesKey("preset_${i}_thirty_seconds")
     }
@@ -38,6 +40,8 @@ class SettingsRepository(private val context: Context) {
                 workTime = prefs[workKey(i)] ?: defaults.workTime,
                 restTime = prefs[restKey(i)] ?: defaults.restTime,
                 rounds = prefs[roundsKey(i)] ?: defaults.rounds,
+                bellEnabled = prefs[bellKey(i)] ?: defaults.bellEnabled,
+                endBellEnabled = prefs[endBellKey(i)] ?: defaults.endBellEnabled,
                 clapperEnabled = prefs[clapperKey(i)] ?: defaults.clapperEnabled,
                 thirtySecondsEnabled = prefs[thirtySecondsKey(i)] ?: defaults.thirtySecondsEnabled
             )
@@ -50,6 +54,8 @@ class SettingsRepository(private val context: Context) {
             prefs[workKey(index)] = settings.workTime
             prefs[restKey(index)] = settings.restTime
             prefs[roundsKey(index)] = settings.rounds
+            prefs[bellKey(index)] = settings.bellEnabled
+            prefs[endBellKey(index)] = settings.endBellEnabled
             prefs[clapperKey(index)] = settings.clapperEnabled
             prefs[thirtySecondsKey(index)] = settings.thirtySecondsEnabled
         }

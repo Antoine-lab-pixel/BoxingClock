@@ -11,6 +11,8 @@ data class TimerSettings(
     val workTime: Int = 180, // 3 minutes
     val restTime: Int = 60, // 1 minute
     val rounds: Int = 3, // 0 means infinite
+    val bellEnabled: Boolean = true,
+    val endBellEnabled: Boolean = true,
     val clapperEnabled: Boolean = true,
     val thirtySecondsEnabled: Boolean = true
 )

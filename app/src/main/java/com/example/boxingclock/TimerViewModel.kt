@@ -1,6 +1,7 @@
 package com.example.boxingclock
 
 import android.app.Application
+import android.media.AudioAttributes
 import android.media.MediaPlayer
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
@@ -30,6 +31,16 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _timerState = MutableStateFlow(TimerState())
     val timerState: StateFlow<TimerState> = _timerState.asStateFlow()
+
+    private val alarmAudioAttributes = AudioAttributes.Builder()
+        .setUsage(AudioAttributes.USAGE_ALARM)
+        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+        .build()
+
+    private val _isMuted = MutableStateFlow(false)
+    val isMuted: StateFlow<Boolean> = _isMuted.asStateFlow()
+
+    fun toggleMute() { _isMuted.value = !_isMuted.value }
 
     private var timerJob: Job? = null
     private var mediaPlayer: MediaPlayer? = null
@@ -131,7 +142,7 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
 
         when (state.currentPhase) {
             Phase.PREPARATION -> {
-                playBell()
+                if (sets.bellEnabled) playBell()
                 _timerState.value = state.copy(
                     currentPhase = Phase.WORK,
                     currentRound = 1,
@@ -145,19 +156,19 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
                 val totalRounds = if (sets.rounds == 0) Int.MAX_VALUE else sets.rounds
 
                 if (state.currentRound < totalRounds) {
-                    playBell()
+                    if (sets.bellEnabled) playBell()
                     _timerState.value = state.copy(
                         currentPhase = Phase.REST,
                         timeRemaining = sets.restTime,
                         totalPhaseTime = sets.restTime
                     )
                 } else {
-                    playEndRounds()
+                    if (sets.endBellEnabled) playEndRounds()
                     resetTimer()
                 }
             }
             Phase.REST -> {
-                playBell()
+                if (sets.bellEnabled) playBell()
                 _timerState.value = state.copy(
                     currentPhase = Phase.WORK,
                     currentRound = state.currentRound + 1,
@@ -170,45 +181,21 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    private fun playThirtySeconds() {
+    private fun playSound(resId: Int) {
+        if (_isMuted.value) return
         try {
             mediaPlayer?.release()
-            mediaPlayer = MediaPlayer.create(getApplication(), R.raw.thirty_seconds)
+            mediaPlayer = MediaPlayer.create(getApplication(), resId, alarmAudioAttributes, 0)
             mediaPlayer?.start()
         } catch (e: Exception) {
             // Handle error silently
         }
     }
 
-    private fun playClapper() {
-        try {
-            mediaPlayer?.release()
-            mediaPlayer = MediaPlayer.create(getApplication(), R.raw.clapper)
-            mediaPlayer?.start()
-        } catch (e: Exception) {
-            // Handle error silently
-        }
-    }
-
-    private fun playBell() {
-        try {
-            mediaPlayer?.release()
-            mediaPlayer = MediaPlayer.create(getApplication(), R.raw.bell)
-            mediaPlayer?.start()
-        } catch (e: Exception) {
-            // Handle error silently
-        }
-    }
-
-    private fun playEndRounds() {
-        try {
-            mediaPlayer?.release()
-            mediaPlayer = MediaPlayer.create(getApplication(), R.raw.end)
-            mediaPlayer?.start()
-        } catch (e: Exception) {
-            // Handle error silently
-        }
-    }
+    private fun playThirtySeconds() = playSound(R.raw.thirty_seconds)
+    private fun playClapper() = playSound(R.raw.clapper)
+    private fun playBell() = playSound(R.raw.bell)
+    private fun playEndRounds() = playSound(R.raw.end)
 
     override fun onCleared() {
         super.onCleared()

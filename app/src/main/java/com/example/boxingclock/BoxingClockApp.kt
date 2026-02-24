@@ -16,6 +16,7 @@ fun BoxingClockApp(viewModel: TimerViewModel) {
     val timerState by viewModel.timerState.collectAsState()
     val settings by viewModel.settings.collectAsState()
     val selectedPreset by viewModel.selectedPreset.collectAsState()
+    val isMuted by viewModel.isMuted.collectAsState()
 
     NavHost(navController = navController, startDestination = "main") {
         composable("main") {
@@ -24,9 +25,11 @@ fun BoxingClockApp(viewModel: TimerViewModel) {
                 totalRounds = settings.rounds,
                 workTime = settings.workTime,
                 restTime = settings.restTime,
+                isMuted = isMuted,
                 onStartClick = { viewModel.startTimer() },
                 onPauseClick = { viewModel.pauseTimer() },
                 onResetClick = { viewModel.resetTimer() },
+                onMuteToggle = { viewModel.toggleMute() },
                 onSettingsClick = { navController.navigate("settings") }
             )
         }
