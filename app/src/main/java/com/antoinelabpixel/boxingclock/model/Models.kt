@@ -1,4 +1,4 @@
-package com.example.boxingclock.model
+package com.antoinelabpixel.boxingclock.model
 
 enum class Phase {
     PREPARATION,

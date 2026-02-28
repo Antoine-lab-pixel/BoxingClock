@@ -1,4 +1,4 @@
-package com.example.boxingclock
+package com.antoinelabpixel.boxingclock
 
 import android.app.Application
 import androidx.lifecycle.ViewModel

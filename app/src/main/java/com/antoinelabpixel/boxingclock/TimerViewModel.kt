@@ -1,13 +1,13 @@
-package com.example.boxingclock
+package com.antoinelabpixel.boxingclock
 
 import android.app.Application
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.boxingclock.model.Phase
-import com.example.boxingclock.model.TimerSettings
-import com.example.boxingclock.model.TimerState
+import com.antoinelabpixel.boxingclock.model.Phase
+import com.antoinelabpixel.boxingclock.model.TimerSettings
+import com.antoinelabpixel.boxingclock.model.TimerState
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow

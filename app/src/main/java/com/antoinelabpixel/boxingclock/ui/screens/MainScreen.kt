@@ -1,4 +1,4 @@
-package com.example.boxingclock.ui.screens
+package com.antoinelabpixel.boxingclock.ui.screens
 
 import android.app.Activity
 import android.content.res.Configuration
@@ -22,11 +22,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.boxingclock.model.Phase
-import com.example.boxingclock.model.TimerState
-import com.example.boxingclock.ui.theme.PhasePreparationColor
-import com.example.boxingclock.ui.theme.PhaseRestColor
-import com.example.boxingclock.ui.theme.PhaseWorkColor
+import com.antoinelabpixel.boxingclock.model.Phase
+import com.antoinelabpixel.boxingclock.model.TimerState
+import com.antoinelabpixel.boxingclock.ui.theme.PhasePreparationColor
+import com.antoinelabpixel.boxingclock.ui.theme.PhaseRestColor
+import com.antoinelabpixel.boxingclock.ui.theme.PhaseWorkColor
 
 @Composable
 fun MainScreen(

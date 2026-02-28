@@ -4,15 +4,15 @@ plugins {
 }
 
 android {
-    namespace = "com.example.boxingclock"
+    namespace = "com.antoinelabpixel.boxingclock"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.boxingclock"
+        applicationId = "com.antoinelabpixel.boxingclock"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 

@@ -1,4 +1,4 @@
-package com.example.boxingclock.ui.theme
+package com.antoinelabpixel.boxingclock.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

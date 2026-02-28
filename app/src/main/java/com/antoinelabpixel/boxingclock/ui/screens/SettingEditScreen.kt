@@ -1,4 +1,4 @@
-package com.example.boxingclock.ui.screens
+package com.antoinelabpixel.boxingclock.ui.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -10,9 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.boxingclock.model.TimerSettings
-import com.example.boxingclock.ui.components.RoundsPicker
-import com.example.boxingclock.ui.components.TimePicker
+import com.antoinelabpixel.boxingclock.model.TimerSettings
+import com.antoinelabpixel.boxingclock.ui.components.RoundsPicker
+import com.antoinelabpixel.boxingclock.ui.components.TimePicker
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

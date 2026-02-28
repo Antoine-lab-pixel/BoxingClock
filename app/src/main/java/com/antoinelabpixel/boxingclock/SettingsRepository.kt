@@ -1,4 +1,4 @@
-package com.example.boxingclock
+package com.antoinelabpixel.boxingclock
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -7,7 +7,7 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.example.boxingclock.model.TimerSettings
+import com.antoinelabpixel.boxingclock.model.TimerSettings
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

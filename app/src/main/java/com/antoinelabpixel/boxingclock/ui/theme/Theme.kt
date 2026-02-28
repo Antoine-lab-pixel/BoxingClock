@@ -1,4 +1,4 @@
-package com.example.boxingclock.ui.theme
+package com.antoinelabpixel.boxingclock.ui.theme
 
 import android.app.Activity
 import androidx.compose.foundation.isSystemInDarkTheme

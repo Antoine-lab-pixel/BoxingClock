@@ -1,4 +1,4 @@
-package com.example.boxingclock.ui.screens
+package com.antoinelabpixel.boxingclock.ui.screens
 
 import android.media.AudioManager
 import androidx.compose.foundation.background
@@ -19,7 +19,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.boxingclock.model.TimerSettings
+import com.antoinelabpixel.boxingclock.model.TimerSettings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

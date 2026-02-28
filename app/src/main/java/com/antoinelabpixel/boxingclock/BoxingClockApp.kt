@@ -1,4 +1,4 @@
-package com.example.boxingclock
+package com.antoinelabpixel.boxingclock
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -6,9 +6,9 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.boxingclock.ui.screens.MainScreen
-import com.example.boxingclock.ui.screens.SettingEditScreen
-import com.example.boxingclock.ui.screens.SettingsScreen
+import com.antoinelabpixel.boxingclock.ui.screens.MainScreen
+import com.antoinelabpixel.boxingclock.ui.screens.SettingEditScreen
+import com.antoinelabpixel.boxingclock.ui.screens.SettingsScreen
 
 @Composable
 fun BoxingClockApp(viewModel: TimerViewModel) {

@@ -1,4 +1,4 @@
-package com.example.boxingclock
+package com.antoinelabpixel.boxingclock
 
 import org.junit.Test
 
