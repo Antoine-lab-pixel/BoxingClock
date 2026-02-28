@@ -1,0 +1,14 @@
+BoxingClock est un minuteur d'intervalles simple conçu spécifiquement pour l'entraînement de boxe. L'affichage est pensé pour rester lisible de loin et être utilisé dans une salle de boxe.
+
+Fonctionnalités :
+- Phases : Préparation, Travail et Repos avec durées configurables
+- Nombre de rounds fixe ou illimité (mode ∞)
+- 3 réglages disponibles avec sauvegarde
+- Alertes sonores : cloche à chaque transition, clapper à 10s de la fin, rappel à 30s, cloche de fin
+- Chaque son est activable/désactivable indépendamment
+- Audio sur le flux alarme, les sons restent audibles même avec de la musique
+- Bouton pour couper les sons de l'app sur l'écran principal
+- Contrôle du volume dans les paramètres
+- L'écran reste allumé pendant toute la durée du chrono
+- Modes portrait et paysage
+- Sans publicité, sans pistage, sans internet

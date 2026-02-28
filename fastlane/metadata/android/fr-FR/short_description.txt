@@ -1,0 +1,1 @@
+Minuteur d'intervalles pour l'entraînement de boxe avec alertes sonores et rounds configurables.

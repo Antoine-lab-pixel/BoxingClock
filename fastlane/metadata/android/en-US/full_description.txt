@@ -1,0 +1,14 @@
+BoxingClock is a simple, no-frills interval timer built for boxing training. The display is designed to be readable from afar and to be used in a boxing gym.
+
+Features:
+- Prep, Work, and Rest phases with configurable durations
+- Fixed or unlimited rounds (∞ mode)
+- 3 settings slots to switch between training configurations
+- Audio cues: bell at phase transitions, clapper when 10s left, 30-second reminder, end bell
+- Each sound individually toggleable
+- Alarm stream audio, sounds stay audible while music is playing
+- Mute button on the main screen
+- Alarm volume control in settings
+- Screen stays on while the timer is running
+- Portrait and landscape support
+- No ads, no tracking, no internet

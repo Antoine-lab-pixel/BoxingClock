@@ -1,0 +1,1 @@
+Interval timer for boxing training with audio cues and configurable rounds.
