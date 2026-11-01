@@ -26,6 +26,16 @@ final class TimerViewModel {
     private(set) var timerState: TimerState = TimerState()
     private(set) var isMuted: Bool = false
 
+    /// In-app alarm volume (0.0–1.0), persisted and pushed to the player.
+    /// Never touches the system volume — the closest iOS equivalent of the
+    /// Android alarm-stream volume setting.
+    var alarmVolume: Float = 1.0 {
+        didSet {
+            presetStore.saveAlarmVolume(alarmVolume)
+            soundPlayer.volume = alarmVolume
+        }
+    }
+
     // MARK: - Dependencies
 
     private let soundPlayer: SoundPlaying
@@ -51,6 +61,8 @@ final class TimerViewModel {
         allPresets = presets
         selectedPreset = selected
         settings = presets[selected]
+        alarmVolume = presetStore.loadAlarmVolume()
+        soundPlayer.volume = alarmVolume
         resetTimer()
     }
 

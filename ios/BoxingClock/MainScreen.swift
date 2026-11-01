@@ -18,7 +18,7 @@ private extension Color {
 /// above the tap layer use `allowsHitTesting(false)` to reproduce Compose's
 /// pass-through hit testing.
 struct MainScreen: View {
-    @State private var viewModel = TimerViewModel()
+    let viewModel: TimerViewModel
     @State private var showSettings = false
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -63,7 +63,7 @@ struct MainScreen: View {
         }
         .toolbar(.hidden, for: .navigationBar)
         .navigationDestination(isPresented: $showSettings) {
-            SettingsPlaceholderScreen()
+            SettingsScreen(viewModel: viewModel)
         }
     }
 
@@ -384,20 +384,10 @@ struct TimerDisplay: View {
     }
 }
 
-// MARK: - Settings placeholder (replaced by the settings PR)
-
-struct SettingsPlaceholderScreen: View {
-    var body: some View {
-        ContentUnavailableView {
-            Label("Settings", systemImage: "gearshape")
-        } description: {
-            Text("The settings screens land in the next pull request.")
-        }
-    }
-}
+// MARK: - Preview
 
 #Preview {
     NavigationStack {
-        MainScreen()
+        MainScreen(viewModel: TimerViewModel())
     }
 }

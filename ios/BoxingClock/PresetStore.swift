@@ -1,19 +1,21 @@
 import Foundation
 
-/// Persistence seam for the 3 presets and the selected index. The
-/// `UserDefaults`-backed implementation arrives with the settings PR; the
-/// in-memory store keeps the flow testable in the meantime.
+/// Persistence seam for the 3 presets, the selected index and the in-app
+/// alarm volume.
 protocol PresetStoring: AnyObject {
     func loadPresets() -> [TimerSettings]
     func savePreset(_ preset: TimerSettings, at index: Int)
     func loadSelectedPreset() -> Int
     func saveSelectedPreset(_ index: Int)
+    func loadAlarmVolume() -> Float
+    func saveAlarmVolume(_ volume: Float)
 }
 
 /// Volatile store — every launch starts from the default presets.
 final class InMemoryPresetStore: PresetStoring {
     private var presets: [TimerSettings]
     private var selected: Int
+    private var alarmVolume: Float = 1.0
 
     init(presets: [TimerSettings] = Array(repeating: TimerSettings(), count: 3),
          selected: Int = 0) {
@@ -31,4 +33,8 @@ final class InMemoryPresetStore: PresetStoring {
     func loadSelectedPreset() -> Int { selected }
 
     func saveSelectedPreset(_ index: Int) { selected = index }
+
+    func loadAlarmVolume() -> Float { alarmVolume }
+
+    func saveAlarmVolume(_ volume: Float) { alarmVolume = volume }
 }
