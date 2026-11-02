@@ -18,7 +18,7 @@ private extension Color {
 /// above the tap layer use `allowsHitTesting(false)` to reproduce Compose's
 /// pass-through hit testing.
 struct MainScreen: View {
-    @State private var viewModel = TimerViewModel()
+    let viewModel: TimerViewModel
     @State private var showSettings = false
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -63,7 +63,7 @@ struct MainScreen: View {
         }
         .toolbar(.hidden, for: .navigationBar)
         .navigationDestination(isPresented: $showSettings) {
-            SettingsPlaceholderScreen()
+            SettingsScreen(viewModel: viewModel)
         }
     }
 
@@ -121,7 +121,7 @@ struct MainScreen: View {
         Image(systemName: "play.fill")
             .resizable()
             .scaledToFit()
-            .frame(width: 360, height: 360)
+            .frame(width: 180, height: 180)
             .foregroundColor(.playIcon)
     }
 
@@ -236,6 +236,7 @@ struct MainScreen: View {
                         }
                     }
                     .frame(height: 20)
+                    .ignoresSafeArea()
                 } else {
                     GeometryReader { proxy in
                         ZStack(alignment: .bottom) {
@@ -245,6 +246,7 @@ struct MainScreen: View {
                         }
                     }
                     .frame(width: 14)
+                    .ignoresSafeArea()
                 }
             }
             .allowsHitTesting(false)
@@ -304,6 +306,9 @@ struct MainScreen: View {
                 }
             }
         }
+        // The root ZStack centers its children by default — expand this bar
+        // to full height, pinned to the top (parity: top bar of the root Box).
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
     }
@@ -384,20 +389,10 @@ struct TimerDisplay: View {
     }
 }
 
-// MARK: - Settings placeholder (replaced by the settings PR)
-
-struct SettingsPlaceholderScreen: View {
-    var body: some View {
-        ContentUnavailableView {
-            Label("Settings", systemImage: "gearshape")
-        } description: {
-            Text("The settings screens land in the next pull request.")
-        }
-    }
-}
+// MARK: - Preview
 
 #Preview {
     NavigationStack {
-        MainScreen()
+        MainScreen(viewModel: TimerViewModel())
     }
 }
