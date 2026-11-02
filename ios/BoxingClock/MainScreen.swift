@@ -121,7 +121,7 @@ struct MainScreen: View {
         Image(systemName: "play.fill")
             .resizable()
             .scaledToFit()
-            .frame(width: 360, height: 360)
+            .frame(width: 180, height: 180)
             .foregroundColor(.playIcon)
     }
 
