@@ -82,32 +82,35 @@ struct SettingEditScreen: View {
 // MARK: - Pickers
 
 /// Minutes 0–60 / seconds 0–59 wheel pickers — the iOS wheel is the native
-/// equivalent of the Android snap-scroll `WheelPicker` (3 rows × 40 dp).
+/// equivalent of the Android snap-scroll `WheelPicker`. Row text is 34 pt
+/// (2× the default) so the rows and digits are comfortably tappable.
 struct TimePickerView: View {
     @Binding var minutes: Int
     @Binding var seconds: Int
 
     var body: some View {
         HStack {
-            wheelColumn(label: "Min", selection: $minutes, items: (0...60).map { "\($0)" }, width: 80)
+            wheelColumn(label: "Min", selection: $minutes, items: (0...60).map { "\($0)" }, width: 160)
             Text(":")
-                .font(.system(size: 32, weight: .bold))
-                .padding(.horizontal, 16)
-            wheelColumn(label: "Sec", selection: $seconds, items: (0...59).map { String(format: "%02d", $0) }, width: 80)
+                .font(.system(size: 40, weight: .bold))
+                .padding(.horizontal, 12)
+            wheelColumn(label: "Sec", selection: $seconds, items: (0...59).map { String(format: "%02d", $0) }, width: 160)
         }
     }
 
     private func wheelColumn(label: String, selection: Binding<Int>, items: [String], width: CGFloat) -> some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 10) {
             Text(label)
-                .font(.system(size: 14, weight: .bold))
+                .font(.system(size: 20, weight: .bold))
             Picker(label, selection: selection) {
                 ForEach(items.indices, id: \.self) { index in
-                    Text(items[index]).tag(index)
+                    Text(items[index])
+                        .font(.system(size: 34, weight: .bold))
+                        .tag(index)
                 }
             }
             .pickerStyle(.wheel)
-            .frame(width: width, height: 120)
+            .frame(width: width, height: 200)
         }
     }
 }
@@ -119,17 +122,19 @@ struct RoundsPickerView: View {
     private let items: [String] = ["∞"] + (1...20).map { "\($0)" }
 
     var body: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 10) {
             Text("Rounds")
-                .font(.system(size: 14, weight: .bold))
+                .font(.system(size: 20, weight: .bold))
             // Index doubles as the value: 0 = ∞, 1–20 = round count
             Picker("Rounds", selection: $rounds) {
                 ForEach(items.indices, id: \.self) { index in
-                    Text(items[index]).tag(index)
+                    Text(items[index])
+                        .font(.system(size: 34, weight: .bold))
+                        .tag(index)
                 }
             }
             .pickerStyle(.wheel)
-            .frame(width: 100, height: 120)
+            .frame(width: 160, height: 200)
         }
     }
 }
