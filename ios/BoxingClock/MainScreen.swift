@@ -304,6 +304,9 @@ struct MainScreen: View {
                 }
             }
         }
+        // The root ZStack centers its children by default — expand this bar
+        // to full height, pinned to the top (parity: top bar of the root Box).
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
     }
