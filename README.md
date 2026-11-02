@@ -1,5 +1,5 @@
 # BoxingClock
-Simple Boxing clock / timer Android app that emphasizes readability. Built with Kotlin and Jetpack Compose.
+Simple Boxing clock / timer app that emphasizes readability. Built with Kotlin and Jetpack Compose for Android — and ported to iOS with SwiftUI (see [ios/](ios/)).
 
 ## Features
 
@@ -24,3 +24,7 @@ Simple Boxing clock / timer Android app that emphasizes readability. Built with 
 ## Build
 
 Open in Android Studio and run on a device or emulator.
+
+## iOS
+
+The iOS port is done — a native SwiftUI app with feature parity with the Android version (see [ios/README.md](ios/README.md)). It is built directly in Xcode for personal use and is not distributed on the App Store.
