@@ -236,6 +236,7 @@ struct MainScreen: View {
                         }
                     }
                     .frame(height: 20)
+                    .ignoresSafeArea()
                 } else {
                     GeometryReader { proxy in
                         ZStack(alignment: .bottom) {
@@ -245,6 +246,7 @@ struct MainScreen: View {
                         }
                     }
                     .frame(width: 14)
+                    .ignoresSafeArea()
                 }
             }
             .allowsHitTesting(false)
