@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import android.view.WindowManager
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
@@ -17,6 +18,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -225,10 +227,14 @@ fun MainScreen(
             }
         }
 
-        // Top bar — drawn last so it stays above all overlays and remains clickable
+        // Top bar — drawn last so it stays above all overlays. Its background
+        // strip swallows taps (mute/settings area, round label, status bar and
+        // cutout margins) so a missed tap can't pause the running round; the
+        // IconButtons keep priority over the strip gesture.
         Box(
             modifier = Modifier
                 .fillMaxWidth()
+                .pointerInput(Unit) { detectTapGestures { } }
                 .statusBarsPadding()
                 .displayCutoutPadding()
                 .padding(horizontal = 16.dp, vertical = 12.dp)

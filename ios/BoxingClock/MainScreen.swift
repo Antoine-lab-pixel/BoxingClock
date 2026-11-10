@@ -295,6 +295,10 @@ struct MainScreen: View {
                         Image(systemName: viewModel.isMuted ? "speaker.slash.fill" : "speaker.wave.2.fill")
                             .font(.system(size: 28))
                             .foregroundColor(.black.opacity(0.7))
+                            // 44 pt hit target (HIG) — the frame alone is not
+                            // hittable, the contentShape makes it so.
+                            .frame(width: 44, height: 44)
+                            .contentShape(Rectangle())
                     }
                     Button {
                         showSettings = true
@@ -302,15 +306,26 @@ struct MainScreen: View {
                         Image(systemName: "gearshape.fill")
                             .font(.system(size: 28))
                             .foregroundColor(.black.opacity(0.7))
+                            .frame(width: 44, height: 44)
+                            .contentShape(Rectangle())
                     }
                 }
             }
         }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        // Inert strip: the top bar swallows taps (gear/mute area, round label,
+        // landscape phase title, status bar) so a missed tap can't pause the
+        // running round — the buttons keep priority over the parent gesture.
+        .background(alignment: .top) {
+            Color.clear
+                .ignoresSafeArea(edges: .top)
+                .contentShape(Rectangle())
+                .onTapGesture { }
+        }
         // The root ZStack centers its children by default — expand this bar
         // to full height, pinned to the top (parity: top bar of the root Box).
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .padding(.horizontal, 16)
-        .padding(.vertical, 12)
     }
 
     private func sessionInfoRow(label: String, value: String) -> some View {
