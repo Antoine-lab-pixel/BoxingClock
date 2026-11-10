@@ -395,7 +395,7 @@ struct TimerDisplay: View {
 
         case (true, false):
             // Portrait sub-60 s: large single number
-            timeText("\(timeInSeconds)", size: 403, tracking: -12)
+            timeText("\(timeInSeconds)", size: 336, tracking: -10)
 
         case (false, true):
             // Landscape with minutes remaining: single-line MM:SS
