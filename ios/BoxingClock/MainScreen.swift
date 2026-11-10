@@ -400,7 +400,7 @@ struct TimerDisplay: View {
                 if minutes > 0 {
                     timeText(String(format: "%02d", minutes), size: 200, tracking: -6)
                 }
-                timeText(String(format: "%02d", seconds), size: 200, tracking: -6)
+                timeText(String(format: "%02d", seconds), size: 240, tracking: -7)
             }
 
         case (false, true, _):
