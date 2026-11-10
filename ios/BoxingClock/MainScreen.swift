@@ -133,12 +133,12 @@ struct MainScreen: View {
 
     // MARK: Running content
 
-    /// Landscape-only downward shift of the timer's centering point. The
-    /// timer is centered on the full screen, then pushed down by this amount:
-    /// 0 would hug the top bar (digits ~2 pt from the round number), the full
-    /// strip height (~140) centers it in the free space below — 100 sits
-    /// between the two (visual compromise: ~24 pt clearance under the bar).
-    private static let landscapeTopBarInset: CGFloat = 100
+    /// Landscape-only downward shift of the timer's centering point: the
+    /// timer is centered on the full screen, then pushed down by half this
+    /// amount. With the hourglass bar now pinned at the physical top (20 pt)
+    /// above the top bar strip (~140 pt), 140 keeps the digits' clearance
+    /// under the strip at the previously tuned level (~17 pt). Higher = lower.
+    private static let landscapeTopBarInset: CGFloat = 140
 
     /// Centered on the window, not on the safe area (parity with the root Box).
     private var runningContent: some View {
@@ -234,14 +234,15 @@ struct MainScreen: View {
     // MARK: Progress indicator
 
     /// Vertical along the trailing edge in portrait, horizontal along the
-    /// physical bottom in landscape — fill shrinks with the remaining time.
+    /// physical top in landscape (above the gear/mute row) — fill shrinks
+    /// with the remaining time.
     private var progressIndicator: some View {
         let progress = Double(viewModel.timerState.timeRemaining)
             / Double(max(1, viewModel.timerState.totalPhaseTime))
 
         return Color.clear
             .ignoresSafeArea()
-            .overlay(alignment: isLandscape ? .bottom : .trailing) {
+            .overlay(alignment: isLandscape ? .top : .trailing) {
                 if isLandscape {
                     GeometryReader { proxy in
                         ZStack(alignment: .leading) {
@@ -329,6 +330,9 @@ struct MainScreen: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
+        // Landscape running: leave room for the hourglass bar pinned at the
+        // physical top edge (20 pt) so it sits above the gear/mute row.
+        .padding(.top, isLandscape && !isInitialState ? 20 : 0)
         // Inert strip: the top bar swallows taps (gear/mute area, round label,
         // landscape phase title, status bar) so a missed tap can't pause the
         // running round — the buttons keep priority over the parent gesture.
