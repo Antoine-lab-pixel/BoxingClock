@@ -409,7 +409,7 @@ struct TimerDisplay: View {
 
         case (false, false, _):
             // Portrait sub-60 s: large single number
-            timeText("\(timeInSeconds)", size: 336, tracking: -10)
+            timeText("\(timeInSeconds)", size: 403, tracking: -12)
         }
     }
 
@@ -419,7 +419,11 @@ struct TimerDisplay: View {
             .tracking(tracking)
             .monospacedDigit()
             .foregroundColor(.black)
-            .fixedSize()
+            // Safety net: at very large sizes a two-digit value (uniform
+            // monospaced advance ≈ 0.6 em per digit) can exceed the screen
+            // width — scale down just enough to fit instead of clipping.
+            .lineLimit(1)
+            .minimumScaleFactor(0.7)
     }
 }
 
