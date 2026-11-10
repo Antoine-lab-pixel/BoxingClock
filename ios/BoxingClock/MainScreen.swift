@@ -384,11 +384,11 @@ struct TimerDisplay: View {
         switch (totalPhaseTime >= 60, isLandscape, minutes > 0) {
         case (true, true, true):
             // Landscape with minutes remaining: single-line MM:SS
-            timeText(String(format: "%02d:%02d", minutes, seconds), size: 237, tracking: -5)
+            timeText(String(format: "%02d:%02d", minutes, seconds), size: 284, tracking: -6)
 
         case (true, true, false):
             // Landscape, minutes reached 0: seconds only
-            timeText("\(seconds)", size: 338, tracking: -10)
+            timeText("\(seconds)", size: 270, tracking: -8)
 
         case (true, false, _):
             // Portrait with minutes: stacked, hide the minutes row at 0
@@ -401,7 +401,7 @@ struct TimerDisplay: View {
 
         case (false, true, _):
             // Landscape sub-60 s
-            timeText("\(timeInSeconds)", size: 338, tracking: -10)
+            timeText("\(timeInSeconds)", size: 270, tracking: -8)
 
         case (false, false, _):
             // Portrait sub-60 s: large single number
