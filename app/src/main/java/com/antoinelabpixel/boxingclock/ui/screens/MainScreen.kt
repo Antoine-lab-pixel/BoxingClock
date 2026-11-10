@@ -190,14 +190,16 @@ fun MainScreen(
                 }
             }
 
-            // Progress indicator (drawn last so it sits above the scrim)
+            // Progress indicator (drawn last so it sits above the scrim):
+            // horizontal along the physical top in landscape (above the
+            // gear/mute row), vertical along the trailing edge in portrait.
             val progress = timerState.timeRemaining.toFloat() / timerState.totalPhaseTime.toFloat()
             if (isLandscape) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(20.dp)
-                        .align(Alignment.BottomCenter)
+                        .align(Alignment.TopCenter)
                         .background(Color.Black.copy(alpha = 0.12f))
                 ) {
                     Box(
@@ -237,6 +239,10 @@ fun MainScreen(
                 .pointerInput(Unit) { detectTapGestures { } }
                 .statusBarsPadding()
                 .displayCutoutPadding()
+                // Landscape running: leave room for the hourglass bar pinned
+                // at the physical top edge (20 dp) so it sits above the
+                // gear/mute row.
+                .padding(top = if (isLandscape && !isInitialState) 20.dp else 0.dp)
                 .padding(horizontal = 16.dp, vertical = 12.dp)
                 .align(Alignment.TopCenter)
         ) {
