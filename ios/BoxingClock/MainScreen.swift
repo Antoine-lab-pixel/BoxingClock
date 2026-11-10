@@ -133,6 +133,13 @@ struct MainScreen: View {
 
     // MARK: Running content
 
+    /// Height of the running-state top bar strip (12 pt padding + ~38 pt ROUND
+    /// label + ~77 pt round number + 12 pt) — used in landscape to shift the
+    /// centering point below the top bar, so the timer sits visually centered
+    /// in the free space (equal gaps to the top bar and the bottom edge)
+    /// instead of hugging the top bar.
+    private static let landscapeTopBarInset: CGFloat = 140
+
     /// Centered on the window, not on the safe area (parity with the root Box).
     private var runningContent: some View {
         Color.clear
@@ -151,6 +158,8 @@ struct MainScreen: View {
                         isLandscape: isLandscape
                     )
                 }
+                // Landscape: recenter below the top bar.
+                .padding(.top, isLandscape ? Self.landscapeTopBarInset : 0)
             }
             .allowsHitTesting(false)
     }
@@ -375,11 +384,11 @@ struct TimerDisplay: View {
         switch (totalPhaseTime >= 60, isLandscape, minutes > 0) {
         case (true, true, true):
             // Landscape with minutes remaining: single-line MM:SS
-            timeText(String(format: "%02d:%02d", minutes, seconds), size: 182, tracking: -4)
+            timeText(String(format: "%02d:%02d", minutes, seconds), size: 237, tracking: -5)
 
         case (true, true, false):
             // Landscape, minutes reached 0: seconds only
-            timeText("\(seconds)", size: 260, tracking: -8)
+            timeText("\(seconds)", size: 338, tracking: -10)
 
         case (true, false, _):
             // Portrait with minutes: stacked, hide the minutes row at 0
@@ -392,7 +401,7 @@ struct TimerDisplay: View {
 
         case (false, true, _):
             // Landscape sub-60 s
-            timeText("\(timeInSeconds)", size: 260, tracking: -8)
+            timeText("\(timeInSeconds)", size: 338, tracking: -10)
 
         case (false, false, _):
             // Portrait sub-60 s: large single number
