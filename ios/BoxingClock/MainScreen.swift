@@ -14,18 +14,24 @@ private extension Color {
 
 /// Port of `MainScreen.kt` — full-screen phase-colored timer.
 /// Portrait and landscape layouts mirror the Android ones; orientation is
-/// derived from size classes (iPhone-only target). Non-interactive layers
-/// above the tap layer use `allowsHitTesting(false)` to reproduce Compose's
-/// pass-through hit testing.
+/// derived from the vertical size class (iPhone-only target: compact only
+/// while rotated), matching Android's orientation-based switch. Non-interactive
+/// layers above the tap layer use `allowsHitTesting(false)` to reproduce
+/// Compose's pass-through hit testing.
 struct MainScreen: View {
     let viewModel: TimerViewModel
     @State private var showSettings = false
 
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.verticalSizeClass) private var verticalSizeClass
 
     private var isLandscape: Bool {
-        horizontalSizeClass == .regular && verticalSizeClass == .compact
+        // iPhone-only target: the vertical size class is compact only while
+        // rotated. Follow the physical orientation (like Android's
+        // orientation-based switch) instead of the horizontal size class —
+        // which only turns regular on Max/Plus models — so every iPhone gets
+        // the landscape layout (single-line MM:SS timer, bottom progress
+        // bar, phase label in the top bar…).
+        verticalSizeClass == .compact
     }
 
     private var backgroundColor: Color {
