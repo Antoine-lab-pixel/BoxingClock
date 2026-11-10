@@ -375,7 +375,10 @@ struct MainScreen: View {
 
 // MARK: - Timer display
 
-/// Port of `TimerDisplay` — the five display modes and their typography.
+/// Port of `TimerDisplay` — the display modes and their typography. The
+/// sub-60 s mode triggers on the remaining time (< 60 s), whatever the
+/// phase's total length: the last minute of a long phase (Work, long rest…)
+/// shows the same large single number as short phases (PREP…).
 struct TimerDisplay: View {
     let timeInSeconds: Int
     let totalPhaseTime: Int
@@ -385,31 +388,25 @@ struct TimerDisplay: View {
     private var seconds: Int { timeInSeconds % 60 }
 
     var body: some View {
-        switch (totalPhaseTime >= 60, isLandscape, minutes > 0) {
-        case (true, true, true):
+        switch (timeInSeconds < 60, isLandscape) {
+        case (true, true):
+            // Landscape sub-60 s: single large number
+            timeText("\(timeInSeconds)", size: 270, tracking: -8)
+
+        case (true, false):
+            // Portrait sub-60 s: large single number
+            timeText("\(timeInSeconds)", size: 403, tracking: -12)
+
+        case (false, true):
             // Landscape with minutes remaining: single-line MM:SS
             timeText(String(format: "%02d:%02d", minutes, seconds), size: 256, tracking: -5)
 
-        case (true, true, false):
-            // Landscape, minutes reached 0: seconds only
-            timeText("\(seconds)", size: 270, tracking: -8)
-
-        case (true, false, _):
-            // Portrait with minutes: stacked, hide the minutes row at 0
+        case (false, false):
+            // Portrait with minutes remaining: stacked MM / SS
             VStack(spacing: 0) {
-                if minutes > 0 {
-                    timeText(String(format: "%02d", minutes), size: 200, tracking: -6)
-                }
+                timeText(String(format: "%02d", minutes), size: 200, tracking: -6)
                 timeText(String(format: "%02d", seconds), size: 200, tracking: -6)
             }
-
-        case (false, true, _):
-            // Landscape sub-60 s
-            timeText("\(timeInSeconds)", size: 270, tracking: -8)
-
-        case (false, false, _):
-            // Portrait sub-60 s: large single number
-            timeText("\(timeInSeconds)", size: 403, tracking: -12)
         }
     }
 
