@@ -384,7 +384,7 @@ struct TimerDisplay: View {
         switch (totalPhaseTime >= 60, isLandscape, minutes > 0) {
         case (true, true, true):
             // Landscape with minutes remaining: single-line MM:SS
-            timeText(String(format: "%02d:%02d", minutes, seconds), size: 284, tracking: -6)
+            timeText(String(format: "%02d:%02d", minutes, seconds), size: 256, tracking: -5)
 
         case (true, true, false):
             // Landscape, minutes reached 0: seconds only
