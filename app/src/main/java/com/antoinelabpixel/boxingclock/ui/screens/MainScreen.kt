@@ -424,6 +424,10 @@ fun StartOverlay(
     }
 }
 
+/// Port of `TimerDisplay` — the display modes and their typography. The
+/// sub-60 s mode triggers on the remaining time (< 60 s), whatever the
+/// phase's total length: the last minute of a long phase (Work, long rest…)
+/// shows the same large single number as short phases (PREP…).
 @Composable
 fun TimerDisplay(
     timeInSeconds: Int,
@@ -434,7 +438,29 @@ fun TimerDisplay(
     val seconds = timeInSeconds % 60
 
     when {
-        totalPhaseTime >= 60 && isLandscape && minutes > 0 -> {
+        timeInSeconds < 60 && isLandscape -> {
+            // Landscape sub-60 s: single large number
+            Text(
+                text = timeInSeconds.toString(),
+                fontSize = 389.sp,
+                fontWeight = FontWeight.Black,
+                letterSpacing = (-12).sp,
+                color = Color.Black,
+                lineHeight = 370.sp
+            )
+        }
+        timeInSeconds < 60 -> {
+            // Portrait sub-60 s: large single number
+            Text(
+                text = timeInSeconds.toString(),
+                fontSize = 269.sp,
+                fontWeight = FontWeight.Black,
+                letterSpacing = (-8).sp,
+                color = Color.Black,
+                lineHeight = 259.sp
+            )
+        }
+        isLandscape -> {
             // Landscape with minutes remaining: single-line MM:SS
             Text(
                 text = String.format("%02d:%02d", minutes, seconds),
@@ -445,33 +471,20 @@ fun TimerDisplay(
                 lineHeight = 247.sp
             )
         }
-        totalPhaseTime >= 60 && isLandscape -> {
-            // Landscape, minutes reached 0: show seconds only
-            Text(
-                text = seconds.toString(),
-                fontSize = 270.sp,
-                fontWeight = FontWeight.Black,
-                letterSpacing = (-8).sp,
-                color = Color.Black,
-                lineHeight = 257.sp
-            )
-        }
-        totalPhaseTime >= 60 -> {
-            // Portrait with minutes: stacked, hide minutes row when it reaches 0
+        else -> {
+            // Portrait with minutes remaining: stacked MM / SS
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                if (minutes > 0) {
-                    Text(
-                        text = String.format("%02d", minutes),
-                        fontSize = 200.sp,
-                        fontWeight = FontWeight.Black,
-                        letterSpacing = (-6).sp,
-                        color = Color.Black,
-                        lineHeight = 195.sp
-                    )
-                }
+                Text(
+                    text = String.format("%02d", minutes),
+                    fontSize = 200.sp,
+                    fontWeight = FontWeight.Black,
+                    letterSpacing = (-6).sp,
+                    color = Color.Black,
+                    lineHeight = 195.sp
+                )
                 Text(
                     text = String.format("%02d", seconds),
                     fontSize = 200.sp,
@@ -481,28 +494,6 @@ fun TimerDisplay(
                     lineHeight = 195.sp
                 )
             }
-        }
-        isLandscape -> {
-            // Landscape sub-60s: scaled down
-            Text(
-                text = timeInSeconds.toString(),
-                fontSize = 270.sp,
-                fontWeight = FontWeight.Black,
-                letterSpacing = (-8).sp,
-                color = Color.Black,
-                lineHeight = 257.sp
-            )
-        }
-        else -> {
-            // Portrait sub-60s: large single number
-            Text(
-                text = timeInSeconds.toString(),
-                fontSize = 280.sp,
-                fontWeight = FontWeight.Black,
-                letterSpacing = (-8).sp,
-                color = Color.Black,
-                lineHeight = 270.sp
-            )
         }
     }
 }
