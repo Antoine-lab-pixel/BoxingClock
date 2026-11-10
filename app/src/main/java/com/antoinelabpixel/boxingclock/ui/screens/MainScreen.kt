@@ -81,7 +81,12 @@ fun MainScreen(
         } else {
             // Phase label + timer
             Column(
-                modifier = Modifier.align(Alignment.Center),
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    // Landscape: shift the centering point below the top zone
+                    // (hourglass bar + top bar strip) — parity with the iOS
+                    // landscapeTopBarInset (140).
+                    .padding(top = if (isLandscape) 140.dp else 0.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 if (!isLandscape) {
@@ -433,22 +438,22 @@ fun TimerDisplay(
             // Landscape with minutes remaining: single-line MM:SS
             Text(
                 text = String.format("%02d:%02d", minutes, seconds),
-                fontSize = 140.sp,
+                fontSize = 256.sp,
                 fontWeight = FontWeight.Black,
-                letterSpacing = (-3).sp,
+                letterSpacing = (-5).sp,
                 color = Color.Black,
-                lineHeight = 135.sp
+                lineHeight = 247.sp
             )
         }
         totalPhaseTime >= 60 && isLandscape -> {
             // Landscape, minutes reached 0: show seconds only
             Text(
                 text = seconds.toString(),
-                fontSize = 200.sp,
+                fontSize = 270.sp,
                 fontWeight = FontWeight.Black,
-                letterSpacing = (-6).sp,
+                letterSpacing = (-8).sp,
                 color = Color.Black,
-                lineHeight = 190.sp
+                lineHeight = 257.sp
             )
         }
         totalPhaseTime >= 60 -> {
@@ -481,11 +486,11 @@ fun TimerDisplay(
             // Landscape sub-60s: scaled down
             Text(
                 text = timeInSeconds.toString(),
-                fontSize = 200.sp,
+                fontSize = 270.sp,
                 fontWeight = FontWeight.Black,
-                letterSpacing = (-6).sp,
+                letterSpacing = (-8).sp,
                 color = Color.Black,
-                lineHeight = 190.sp
+                lineHeight = 257.sp
             )
         }
         else -> {
