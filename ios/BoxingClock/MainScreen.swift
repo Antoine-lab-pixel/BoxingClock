@@ -391,7 +391,7 @@ struct TimerDisplay: View {
         switch (timeInSeconds < 60, isLandscape) {
         case (true, true):
             // Landscape sub-60 s: single large number
-            timeText("\(timeInSeconds)", size: 389, tracking: -12)
+            timeText("\(timeInSeconds)", size: 467, tracking: -14)
 
         case (true, false):
             // Portrait sub-60 s: large single number
