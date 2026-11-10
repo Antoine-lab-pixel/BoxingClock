@@ -133,12 +133,12 @@ struct MainScreen: View {
 
     // MARK: Running content
 
-    /// Height of the running-state top bar strip (12 pt padding + ~38 pt ROUND
-    /// label + ~77 pt round number + 12 pt) — used in landscape to shift the
-    /// centering point below the top bar, so the timer sits visually centered
-    /// in the free space (equal gaps to the top bar and the bottom edge)
-    /// instead of hugging the top bar.
-    private static let landscapeTopBarInset: CGFloat = 140
+    /// Landscape-only downward shift of the timer's centering point. The
+    /// timer is centered on the full screen, then pushed down by this amount:
+    /// 0 would hug the top bar (digits ~2 pt from the round number), the full
+    /// strip height (~140) centers it in the free space below — 100 sits
+    /// between the two (visual compromise: ~24 pt clearance under the bar).
+    private static let landscapeTopBarInset: CGFloat = 100
 
     /// Centered on the window, not on the safe area (parity with the root Box).
     private var runningContent: some View {
